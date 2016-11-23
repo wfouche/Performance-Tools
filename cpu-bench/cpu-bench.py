@@ -1,6 +1,6 @@
 #---------------------------------------------------------------------------------------
 #
-# Program to benchmark CPUs and determine a server's degree of parallism (DOP).
+# Program to benchmark CPUs and determine a server's degree of parallelism (DOP).
 #
 # Author: W. Fouche
 #
