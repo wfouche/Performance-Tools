@@ -1,0 +1,27 @@
+= CPU Benchmark
+
+== Platform Support
+
+=== AIX 
+
+Use Python 2.7.10-1 available from:
+
+* http://www.bullfreeware.com/affichage.php?id=2316
+
+== Redhat
+
+Use Python 2.7.10-1 available from:
+
+* http://tecadmin.net/install-python-2-7-on-centos-rhel/
+
+== Ubuntu
+
+Use Python 2.7.10-1 available from:
+
+* http://tecadmin.net/install-python-2-7-on-ubuntu-and-linuxmint/
+
+== Windows
+
+Use Python 2.7.10-1 (64bit) available from:
+
+* https://www.python.org/ftp/python/2.7.10/python-2.7.10.amd64.msi
