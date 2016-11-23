@@ -18,7 +18,7 @@ Use Python 2.7.10-1 available from:
 
 * http://tecadmin.net/install-python-2-7-on-centos-rhel/
 
-===s Ubuntu
+=== Ubuntu
 
 Use Python 2.7.10-1 available from:
 
