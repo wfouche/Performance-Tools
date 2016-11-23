@@ -2,19 +2,23 @@
 
 == Platform Support
 
+*CPU-bench* can be run using either Python 2.7 or Python 3.5.
+
 === AIX 
 
 Use Python 2.7.10-1 available from:
 
 * http://www.bullfreeware.com/affichage.php?id=2316
 
-== Redhat
+== Linux
+
+=== Redhat
 
 Use Python 2.7.10-1 available from:
 
 * http://tecadmin.net/install-python-2-7-on-centos-rhel/
 
-== Ubuntu
+===s Ubuntu
 
 Use Python 2.7.10-1 available from:
 
