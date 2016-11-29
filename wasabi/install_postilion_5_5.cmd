@@ -13,7 +13,7 @@ REM Use "start /b /wait /belownornal .... " to workaround a busy-wait issue in o
 REM
 start /b /wait /belownormal c:\Python27\python.exe install_postilion.py ^
     --install ^
-	--license_file=c:\postilion.lic
+	--license_file=c:\postilion.lic ^
 	--config_file=install_postilion_5_5.py ^
 	--media_path=x:\MosaicReleases ^
 	--svc_domain="." ^
