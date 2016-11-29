@@ -77,6 +77,7 @@ media_path  = argv['--media_path']
 config_file = argv['--config_file']
 py_code = "import %s as CONFIG_FILE"%(config_file[:-3])
 exec (py_code)
+license_file = argv['--license_file']
 
 if option == None:
     sys.exit(1)
@@ -97,7 +98,7 @@ def section(f=1,bold=0):
 # INSTALL_SRC_PATH = 'd:'
 
 INSTALL_SRC_PATH = media_path
-LICENSE_FILE     = 'c:\\postilion.lic'
+LICENSE_FILE     = license_file
 
 install_list = CONFIG_FILE.install_list
 
