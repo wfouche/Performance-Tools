@@ -7,10 +7,10 @@ WASABI is an automated installer for the Postilion 5.x product family running on
 == Installation Instructions
 
 . Ensure https://www.python.org/ftp/python/2.7.12/python-2.7.12.msi[Python 2.7 (32bit)] is installed to `c:\Python27`.
-. Ensure `c:\postilion.lic` contains a valid license file.
 . Edit file `install_postilion_5_5.py` (botton section) to specify which components and patches should be installed.
 . Edit file `install_postilion_5_5.cmd` to:
 ** Specify the account information (username / password) for the Postilion services to use.
 ** Specify the location of the binary installation files.
+** Specify the location of the Postilion license file.
 . Run script `install_postilion_5_5.cmd`.
 . Once the installation has completed, see file `postilion_install_log.txt` to determine if all the installation steps  succeeded.
