@@ -1,0 +1,13 @@
+= WASABI
+
+== Introduction
+
+WASABI is an automated installer for the Postilion 5.x product family running on Windows and MS SQL Server.
+
+== Installation Instructions
+
+. Ensure c:\postilion.lic contains a valid license file.
+. Edit file install_postilion_5_5.py (botton section) to specify which components and patches should be installed.
+. Edit file install_postilion_5_5.cmd to:
+** Specify the account information (username / password) for the Postilion services to use.
+** Specify the location of the binary installation files.
