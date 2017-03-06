@@ -1,0 +1,59 @@
+CPU-bench:
+
+    1.0.0 - (date: 2016-09-08 00:44:18.324000)
+
+Operating System Environment:
+
+    Windows-7-6.1.7601-SP1
+
+Python Version:
+
+    2.7.12 (v2.7.12:d33e0cf91556, Jun 27 2016, 15:24:40) [MSC v.1500 64 bit (AMD64)]
+
+Runtime Arguments:
+
+    c:\Python27\python.exe: ['cpu_bench.py', '--auto']
+
+Server Hardware:
+
+    Number of LCPUs (logical CPUs, hardware threads): 24
+
+Performance of 1 LCPU:
+
+    LCPU 0: It took 1.793 seconds to reach 4,294,967,296 at SPR(2395.2)
+    LCPU 0: It took 30.027 seconds to reach 71,855,039,025 at SPR(2393.0)
+    LCPU 0: It took 29.974 seconds to reach 71,790,420,467 at SPR(2395.1)
+    LCPU 0: It took 30.016 seconds to reach 71,852,699,992 at SPR(2393.8)
+
+Performance of 24 LCPUs:
+
+    LCPU 0: It took 30.047 seconds to reach 71,852,699,992 at SPR(2391.3)
+    LCPU 1: It took 30.279 seconds to reach 71,852,699,992 at SPR(2373.0)
+    LCPU 2: It took 30.233 seconds to reach 71,852,699,992 at SPR(2376.6)
+    LCPU 3: It took 30.070 seconds to reach 71,852,699,992 at SPR(2389.5)
+    LCPU 4: It took 30.040 seconds to reach 71,852,699,992 at SPR(2391.9)
+    LCPU 5: It took 30.206 seconds to reach 71,852,699,992 at SPR(2378.8)
+    LCPU 6: It took 30.014 seconds to reach 71,852,699,992 at SPR(2394.0)
+    LCPU 7: It took 30.103 seconds to reach 71,852,699,992 at SPR(2386.9)
+    LCPU 8: It took 30.041 seconds to reach 71,852,699,992 at SPR(2391.8)
+    LCPU 9: It took 30.698 seconds to reach 71,852,699,992 at SPR(2340.6)
+    LCPU 10: It took 30.158 seconds to reach 71,852,699,992 at SPR(2382.5)
+    LCPU 11: It took 30.009 seconds to reach 71,852,699,992 at SPR(2394.4)
+    LCPU 12: It took 30.026 seconds to reach 71,852,699,992 at SPR(2393.0)
+    LCPU 13: It took 30.016 seconds to reach 71,852,699,992 at SPR(2393.8)
+    LCPU 14: It took 30.023 seconds to reach 71,852,699,992 at SPR(2393.3)
+    LCPU 15: It took 30.033 seconds to reach 71,852,699,992 at SPR(2392.5)
+    LCPU 16: It took 30.094 seconds to reach 71,852,699,992 at SPR(2387.6)
+    LCPU 17: It took 30.007 seconds to reach 71,852,699,992 at SPR(2394.5)
+    LCPU 18: It took 30.019 seconds to reach 71,852,699,992 at SPR(2393.6)
+    LCPU 19: It took 30.098 seconds to reach 71,852,699,992 at SPR(2387.3)
+    LCPU 20: It took 30.112 seconds to reach 71,852,699,992 at SPR(2386.2)
+    LCPU 21: It took 30.056 seconds to reach 71,852,699,992 at SPR(2390.6)
+    LCPU 22: It took 30.142 seconds to reach 71,852,699,992 at SPR(2383.8)
+    LCPU 23: It took 30.036 seconds to reach 71,852,699,992 at SPR(2392.2)
+
+Benchmark Score:
+
+    NUM_LCPUs : 24
+    DOP       : 23.9
+    SPR       : 57279.8

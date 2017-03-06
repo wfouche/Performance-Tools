@@ -1,0 +1,43 @@
+CPU-bench:
+
+    1.0.0 - (date: 2016-09-08 00:44:18.324000)
+
+Operating System Environment:
+
+    Windows-2012ServerR2-6.3.9600
+
+Python Version:
+
+    2.7.13 (v2.7.13:a06454b1afa1, Dec 17 2016, 20:53:40) [MSC v.1500 64 bit (AMD64)]
+
+Runtime Arguments:
+
+    c:\Python27\python.exe: ['cpu_bench.py', '--auto']
+
+Server Hardware:
+
+    Number of LCPUs (logical CPUs, hardware threads): 8
+
+Performance of 1 LCPU:
+
+    LCPU 0: It took 1.390 seconds to reach 4,294,967,296 at SPR(3088.8)
+    LCPU 0: It took 29.947 seconds to reach 92,664,136,785 at SPR(3094.3)
+    LCPU 0: It took 29.984 seconds to reach 92,828,374,934 at SPR(3095.9)
+    LCPU 0: It took 30.004 seconds to reach 92,876,853,555 at SPR(3095.5)
+
+Performance of 8 LCPUs:
+
+    LCPU 0: It took 30.005 seconds to reach 92,876,853,555 at SPR(3095.4)
+    LCPU 1: It took 30.004 seconds to reach 92,876,853,555 at SPR(3095.4)
+    LCPU 2: It took 30.017 seconds to reach 92,876,853,555 at SPR(3094.2)
+    LCPU 3: It took 30.005 seconds to reach 92,876,853,555 at SPR(3095.3)
+    LCPU 4: It took 30.018 seconds to reach 92,876,853,555 at SPR(3094.1)
+    LCPU 5: It took 30.057 seconds to reach 92,876,853,555 at SPR(3090.1)
+    LCPU 6: It took 30.647 seconds to reach 92,876,853,555 at SPR(3030.5)
+    LCPU 7: It took 30.004 seconds to reach 92,876,853,555 at SPR(3095.5)
+
+Benchmark Score:
+
+    NUM_LCPUs : 8
+    DOP       : 8.0
+    SPR       : 24690.5

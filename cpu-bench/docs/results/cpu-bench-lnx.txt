@@ -1,0 +1,43 @@
+CPU-bench:
+
+    1.0.0 - (date: 2016-09-08 00:44:18.324000)
+
+Operating System Environment:
+
+    Linux-3.10.0-514.2.2.el7.x86_64-x86_64-with-redhat-7.3-Maipo
+
+Python Version:
+
+    2.7.5 (default, Aug  2 2016, 04:20:16)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-4)]
+
+Runtime Arguments:
+
+    /usr/bin/python: ['./cpu_bench.py', '--auto']
+
+Server Hardware:
+
+    Number of LCPUs (logical CPUs, hardware threads): 8
+
+Performance of 1 LCPU:
+
+    LCPU 0: It took 1.392 seconds to reach 4,294,967,296 at SPR(3085.8)
+    LCPU 0: It took 30.001 seconds to reach 92,573,726,449 at SPR(3085.7)
+    LCPU 0: It took 30.002 seconds to reach 92,570,097,701 at SPR(3085.5)
+    LCPU 0: It took 29.998 seconds to reach 92,563,686,123 at SPR(3085.7)
+
+Performance of 8 LCPUs:
+
+    LCPU 0: It took 29.996 seconds to reach 92,563,686,123 at SPR(3085.9)
+    LCPU 1: It took 29.997 seconds to reach 92,563,686,123 at SPR(3085.8)
+    LCPU 2: It took 29.995 seconds to reach 92,563,686,123 at SPR(3086.0)
+    LCPU 3: It took 29.995 seconds to reach 92,563,686,123 at SPR(3086.0)
+    LCPU 4: It took 29.996 seconds to reach 92,563,686,123 at SPR(3085.9)
+    LCPU 5: It took 29.996 seconds to reach 92,563,686,123 at SPR(3085.8)
+    LCPU 6: It took 30.009 seconds to reach 92,563,686,123 at SPR(3084.5)
+    LCPU 7: It took 29.996 seconds to reach 92,563,686,123 at SPR(3085.9)
+
+Benchmark Score:
+
+    NUM_LCPUs : 8
+    DOP       : 8.0
+    SPR       : 24685.8
