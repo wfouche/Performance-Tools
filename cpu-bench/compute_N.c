@@ -42,6 +42,13 @@ int main(int argc, char* argv[])
     gettimeofday(&start, NULL);
     {
         while (n) { n -= 1; }
+		//
+		// Intel x64 (gcc -O) - machine code.
+		//
+        // .L9:
+        //       subq    $1, %rbx
+        //       jne     .L9
+		//
     }
     gettimeofday(&end, NULL);
 
