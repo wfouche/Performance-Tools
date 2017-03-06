@@ -18,7 +18,8 @@ use_c_extension = True
 
 # import datetime; print datetime.datetime.now()
 
-BUILD_TIMESTAMP = "2016-09-08 00:44:18.324000"
+BUILD_VERSION   = "1.1.0"
+BUILD_TIMESTAMP = "2017-03-06 11:43:51.150000"
 
 import datetime
 import os
@@ -366,7 +367,7 @@ if __name__ == "__main__":
         if not csv_report:
             print("CPU-bench:")
             print("")            
-            print("    1.0.0 - (date: %s)"%(BUILD_TIMESTAMP))
+            print("    %s - (date: %s)"%(BUILD_VERSION, BUILD_TIMESTAMP))
             print("")
             print("Operating System Environment:")
             print("")            
