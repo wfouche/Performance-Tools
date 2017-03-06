@@ -14,6 +14,8 @@
 #
 #---------------------------------------------------------------------------------------
 
+use_c_extension = True
+
 # import datetime; print datetime.datetime.now()
 
 BUILD_TIMESTAMP = "2016-09-08 00:44:18.324000"
@@ -27,6 +29,11 @@ import gc
 import getopt
 import platform
 import timeit
+
+if platform.system() == "Windows":
+    exe_compute_N = "./compute_N.exe"
+else:
+    exe_compute_N = "./compute_N"
 
 #---------------------------------------------------------------------------------------
 
@@ -80,7 +87,7 @@ def format_n1k(n):
 
 #---------------------------------------------------------------------------------------
 
-def compute_N(N):
+def compute_N_old(N):
     """
     Compute the time it takes to increment an integer 
     variable 'n' by 1, 'N' times; starting at zero.
@@ -117,14 +124,28 @@ def compute_N(N):
 
     return x1-x0
 
-#----------------------------------------------p4 di-----------------------------------------
+def compute_N_new(N):
+    p = subprocess.Popen([exe_compute_N, "%d"%(N)], stdout=subprocess.PIPE)
+    out, err = p.communicate()
+    list = out.splitlines()
+    duration_this_CPU = list[0].decode()
+    duration_this_CPU = float(duration_this_CPU)
+    return duration_this_CPU
+
+if use_c_extension:
+    compute_N = compute_N_new
+else:
+    compute_N = compute_N_old
+
+#---------------------------------------------------------------------------------------
 
 def calc_seed_value():
     duration = 0
     seed_value = 1000
+    seed_value = 1
     while duration < 1.0:
         seed_value = seed_value*2
-        seed_value = (seed_value//1000)*1000
+        #seed_value = (seed_value//1000)*1000
         duration = compute_N(seed_value)
     return seed_value
 
@@ -144,7 +165,7 @@ def benchmark_one_CPU(seed_value, csv_report):
        spr = spr / 1000000.0
        if not csv_report: print("    LCPU 0: It took %.3f seconds to reach %s at SPR(%.1f)"%(duration_one_CPU, format_n1k(N),spr))
        N_next = int((target_duration * N) / (duration_one_CPU))
-       N_next = (N_next//1000)*1000
+       #N_next = (N_next//1000)*1000
 
     dop = 1.0
     
@@ -175,15 +196,18 @@ def benchmark_all_CPUs(script_name, num_CPUs, N, duration_one_CPU, csv_report, d
         
     # Wait till we reach hh:mm:30
     while time.localtime().tm_sec != 30:
-        # sleep for 10 milliseconds
-        time.sleep(10.0/1000.0)
+        # sleep for 100 milliseconds
+        time.sleep(100.0/1000.0)
         
     timestamp = datetime.datetime.now().isoformat()
         
     duration_all_CPUs = 0.0
     L = []
     for i in range(num_CPUs):
-        p = subprocess.Popen([sys.executable, script_name, "--mi=%d"%(N)], stdout=subprocess.PIPE)
+        if use_c_extension:
+            p = subprocess.Popen([exe_compute_N, "%d 1"%(N)], stdout=subprocess.PIPE)
+        else:
+            p = subprocess.Popen([sys.executable, script_name, "--mi=%d"%(N)], stdout=subprocess.PIPE)
         L.append(p)
     
     # Guard
@@ -242,8 +266,8 @@ def child_process(N):
     # All processes wait to start at exactly the same time.
     # Wait till we reach hh:mm:00
     while time.localtime().tm_sec != 0:
-        # sleep for 10 milliseconds
-        time.sleep(10.0/1000.0)
+        # sleep for 100 milliseconds
+        time.sleep(100.0/1000.0)
     
     # Compute N and display the elapsed time to the console (pipe).
     print(compute_N(N))
@@ -304,7 +328,7 @@ if __name__ == "__main__":
         if ("--auto" in d.keys()):
             if platform.system() == "Windows":
                 num_cpus = int(os.getenv("NUMBER_OF_PROCESSORS"))
-            elif platform.system() == "Linux":
+            elif platform.system() in ["Linux", "CYGWIN_NT-10.0"]:
                 num_cpus = -1
                 p = subprocess.Popen("lscpu", stdout=subprocess.PIPE)
                 out, err = p.communicate()
