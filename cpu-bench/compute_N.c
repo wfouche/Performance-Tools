@@ -20,18 +20,18 @@ int main(int argc, char* argv[])
     time_t        time_utc;
     struct tm *   time_now;
 
-    int running = 0;
+    int waiting = 0;
     if (argc > 2)
     {
-        running = atoi(argv[2]);
+        waiting = atoi(argv[2]);
     }
-    while (running)
+    while (waiting)
     {
         time(&time_utc);
         time_now = localtime(&time_utc);
         if (time_now->tm_sec == 0)
         {
-            running = 0;
+            waiting = 0;
         }
         else
         {
