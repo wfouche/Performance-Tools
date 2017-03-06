@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
     }
     gettimeofday(&end, NULL);
 
-    secs_used=(end.tv_sec - start.tv_sec); //avoid overflow by subtracting first
+    secs_used=(end.tv_sec - start.tv_sec);
     micros_used= ((secs_used*1000000) + end.tv_usec) - (start.tv_usec);
 
     double m = micros_used / 1000000.0;
