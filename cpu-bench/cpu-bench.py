@@ -220,6 +220,7 @@ def benchmark_all_CPUs(script_name, num_CPUs, N, duration_one_CPU, csv_report, d
 
     lcpu_id = 0
     SPR = 0.0
+    rlist = []
     for p in L:
         out, err = p.communicate()
         list = out.splitlines()
@@ -228,10 +229,14 @@ def benchmark_all_CPUs(script_name, num_CPUs, N, duration_one_CPU, csv_report, d
         spr = N/duration_this_CPU
         spr = spr / 1000000.0
         if not csv_report:
-            print("    LCPU %d: It took %.3f seconds to reach %s at SPR(%.1f)"%(lcpu_id,duration_this_CPU,format_n1k(N),spr))
+            rlist.append("    LCPU %d: It took %.3f seconds to reach %s at SPR(%.1f)"%(lcpu_id,duration_this_CPU,format_n1k(N),spr))
         duration_all_CPUs += duration_this_CPU
         lcpu_id += 1
         SPR += spr
+        
+    if not csv_report:
+        for line in rlist:
+            print(line)
 
     if not csv_report: print("")
     
