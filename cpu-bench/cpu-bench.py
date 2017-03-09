@@ -206,7 +206,7 @@ def benchmark_all_CPUs(script_name, num_CPUs, N, duration_one_CPU, csv_report, d
     L = []
     for i in range(num_CPUs):
         if use_c_extension:
-            p = subprocess.Popen([exe_compute_N, "%d 1"%(N)], stdout=subprocess.PIPE)
+            p = subprocess.Popen([exe_compute_N, "%d"%(N), "1"], stdout=subprocess.PIPE)
         else:
             p = subprocess.Popen([sys.executable, script_name, "--mi=%d"%(N)], stdout=subprocess.PIPE)
         L.append(p)
