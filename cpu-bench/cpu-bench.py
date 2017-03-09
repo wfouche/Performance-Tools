@@ -18,8 +18,8 @@ use_c_extension = True
 
 # import datetime; print datetime.datetime.now()
 
-BUILD_VERSION   = "1.1.0"
-BUILD_TIMESTAMP = "2017-03-06 11:43:51.150000"
+BUILD_VERSION   = "1.1.1"
+BUILD_TIMESTAMP = "2017-03-09 15:13:07.096000"
 
 import datetime
 import os
