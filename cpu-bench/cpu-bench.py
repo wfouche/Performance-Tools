@@ -371,9 +371,13 @@ if __name__ == "__main__":
         csv_report = ("--csv_report" in d.keys())
 
         if not csv_report:
-            print("CPU-bench: %s (%s)"%(BUILD_VERSION, BUILD_TIMESTAMP))
+            print("CPU-bench:")
             print("")
-            print("    Hostname - %s"%(socket.gethostname()))
+            print("    %s (%s)"%(BUILD_VERSION, BUILD_TIMESTAMP))
+            print("")
+            print("Hostname:")
+            print("")
+            print("    %s"%(socket.gethostname()))
             print("")
             print("Operating System Environment:")
             print("")            
