@@ -18,12 +18,13 @@ use_c_extension = True
 
 # import datetime; print datetime.datetime.now()
 
-BUILD_VERSION   = "1.1.1"
-BUILD_TIMESTAMP = "2017-03-09 15:13:07.096000"
+BUILD_VERSION   = "1.1.2"
+BUILD_TIMESTAMP = "2017-03-13 12:08:52.516000"
 
 import datetime
 import os
 import sys
+import socket
 import subprocess
 import time
 import gc
@@ -370,9 +371,9 @@ if __name__ == "__main__":
         csv_report = ("--csv_report" in d.keys())
 
         if not csv_report:
-            print("CPU-bench:")
-            print("")            
-            print("    %s - (date: %s)"%(BUILD_VERSION, BUILD_TIMESTAMP))
+            print("CPU-bench: %s (%s)"%(BUILD_VERSION, BUILD_TIMESTAMP))
+            print("")
+            print("    Hostname - %s"%(socket.gethostname()))
             print("")
             print("Operating System Environment:")
             print("")            
