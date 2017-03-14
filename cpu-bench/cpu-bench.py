@@ -379,6 +379,7 @@ if __name__ == "__main__":
         csv_report = ("--csv_report" in d.keys())
 
         if not csv_report:
+            print("")
             print("CPU-bench:")
             print("")
             print("    %s (%s)"%(BUILD_VERSION, BUILD_TIMESTAMP))
