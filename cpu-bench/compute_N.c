@@ -1,8 +1,27 @@
+/* ----------------------------------------------------------------------- */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
 #include <time.h>
 #include <unistd.h>
+
+/* ----------------------------------------------------------------------- */
+
+long delay_n(long n)
+{
+    while (n) { n -= 1; }
+	//
+	// Intel x64 (gcc -O) - machine code.
+	//
+	// .L9:
+	//       subq    $1, %rbx
+	//       jne     .L9
+	//
+	return n;
+}
+
+/* ----------------------------------------------------------------------- */
 
 int main(int argc, char* argv[])
 {
@@ -41,14 +60,7 @@ int main(int argc, char* argv[])
 
     gettimeofday(&start, NULL);
     {
-        while (n) { n -= 1; }
-        //
-        // Intel x64 (gcc -O) - machine code.
-        //
-        // .L9:
-        //       subq    $1, %rbx
-        //       jne     .L9
-        //
+		n = delay_n(n);
     }
     gettimeofday(&end, NULL);
 
@@ -58,5 +70,7 @@ int main(int argc, char* argv[])
     double m = micros_used / 1000000.0;
     printf("%lf\n", m);
 
-    return 0;
+    return n;
 }
+
+/* ----------------------------------------------------------------------- */
