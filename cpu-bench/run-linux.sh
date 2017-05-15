@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 gcc -O compute_N.c -o compute_N
 

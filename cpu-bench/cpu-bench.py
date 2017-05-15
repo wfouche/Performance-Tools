@@ -16,8 +16,8 @@
 
 # import datetime; print datetime.datetime.now()
 
-BUILD_VERSION   = "1.1.3"
-BUILD_TIMESTAMP = "2017-03-14 21:29:52.516000"
+BUILD_VERSION   = "1.1.4"
+BUILD_TIMESTAMP = "2017-05-15 21:29:52.516000"
 
 #---------------------------------------------------------------------------------------
 

@@ -8,33 +8,6 @@
 
 /* ----------------------------------------------------------------------- */
 
-void delay_n(long n)
-{
-    while (n) { n -= 1; }
-	//
-	// Intel x64 (gcc -O -S) - machine code.
-	//
-	// .L9:
-	//       subq    $1, %rbx
-	//       jne     .L9
-	//
-}
-
-void delay_n0(long n)
-{
-    long i = 0;
-    while (i < n) { i += 1; }
-	//
-	// Intel x64 (gcc -O -S) - machine code.
-	//
-    // .L9:
-	//       addq	$1, %rdx
-	//       cmpq	%rdx, %rax
-	//       jne	.L9	
-}
-
-/* ----------------------------------------------------------------------- */
-
 int main(int argc, char* argv[])
 {
     struct timeval start, end;
@@ -46,7 +19,6 @@ int main(int argc, char* argv[])
         return 0;
     }
 
-    long n = atol(argv[1]);
 
     time_t        time_utc;
     struct tm *   time_now;
@@ -70,9 +42,18 @@ int main(int argc, char* argv[])
         }
     }
 
+    long n = atol(argv[1]);
     gettimeofday(&start, NULL);
     {
-		delay_n(n);
+
+        while (n) { n -= 1; }
+	//
+	// Intel x64 (gcc -O -S) - machine code.
+	//
+	// .L9:
+	//       subq    $1, %rbx
+	//       jne     .L9
+	//
     }
     gettimeofday(&end, NULL);
 
