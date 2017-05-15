@@ -381,6 +381,8 @@ if __name__ == "__main__":
             print("")
             print("    %s (%s)"%(BUILD_VERSION, BUILD_TIMESTAMP))
             print("")
+            print("    C_extension: %s"%("enabled" if use_c_extension else "disabled"))
+            print("")
             print("Hostname:")
             print("")
             print("    %s"%(socket.gethostname()))
