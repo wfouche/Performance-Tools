@@ -8,17 +8,29 @@
 
 /* ----------------------------------------------------------------------- */
 
-long delay_n(long n)
+void delay_n(long n)
 {
     while (n) { n -= 1; }
 	//
-	// Intel x64 (gcc -O) - machine code.
+	// Intel x64 (gcc -O -S) - machine code.
 	//
 	// .L9:
 	//       subq    $1, %rbx
 	//       jne     .L9
 	//
-	return n;
+}
+
+void delay_n0(long n)
+{
+    long i = 0;
+    while (i < n) { i += 1; }
+	//
+	// Intel x64 (gcc -O -S) - machine code.
+	//
+    // .L9:
+	//       addq	$1, %rdx
+	//       cmpq	%rdx, %rax
+	//       jne	.L9	
 }
 
 /* ----------------------------------------------------------------------- */
@@ -60,7 +72,7 @@ int main(int argc, char* argv[])
 
     gettimeofday(&start, NULL);
     {
-		n = delay_n(n);
+		delay_n(n);
     }
     gettimeofday(&end, NULL);
 
@@ -70,7 +82,7 @@ int main(int argc, char* argv[])
     double m = micros_used / 1000000.0;
     printf("%lf\n", m);
 
-    return n;
+    return 0;
 }
 
 /* ----------------------------------------------------------------------- */
