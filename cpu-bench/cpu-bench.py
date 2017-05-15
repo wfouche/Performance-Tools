@@ -135,11 +135,8 @@ def compute_N_old(N):
     return x1-x0
 
 def compute_N_new(N):
-    p = subprocess.Popen([exe_compute_N, "%d"%(N)], stdout=subprocess.PIPE)
-    out, err = p.communicate()
-    list = out.splitlines()
-    duration_this_CPU = list[0].decode()
-    duration_this_CPU = float(duration_this_CPU)
+    line = subprocess.check_output([exe_compute_N, "%d"%(N)], universal_newlines=True)
+    duration_this_CPU = float(line)
     return duration_this_CPU
 
 if use_c_extension:
