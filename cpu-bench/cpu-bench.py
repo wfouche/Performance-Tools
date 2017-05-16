@@ -97,7 +97,14 @@ def format_n1k(n):
 
 #---------------------------------------------------------------------------------------
 
-def compute_N_old(N):
+def compute_N_native(N):
+    line = subprocess.check_output([exe_compute_N, "%d"%(N)], universal_newlines=True)
+    duration_this_CPU = float(line)
+    return duration_this_CPU
+
+#---------------------------------------------------------------------------------------
+
+def compute_N_python(N):
     """
     Compute the time it takes to increment an integer 
     variable 'n' by 1, 'N' times; starting at zero.
@@ -134,15 +141,12 @@ def compute_N_old(N):
 
     return x1-x0
 
-def compute_N_new(N):
-    line = subprocess.check_output([exe_compute_N, "%d"%(N)], universal_newlines=True)
-    duration_this_CPU = float(line)
-    return duration_this_CPU
+#---------------------------------------------------------------------------------------
 
 if use_c_extension:
-    compute_N = compute_N_new
+    compute_N = compute_N_native
 else:
-    compute_N = compute_N_old
+    compute_N = compute_N_python
 
 #---------------------------------------------------------------------------------------
 
@@ -150,10 +154,15 @@ def calc_seed_value():
     duration = 0
     seed_value = 1000
     seed_value = 1
-    while duration < 1.0:
+    count = 0
+    while (duration < 1.0) and (count < 100):
         seed_value = seed_value*2
         #seed_value = (seed_value//1000)*1000
         duration = compute_N(seed_value)
+        count += 1
+    if count == 100:
+        print("\nError: calc_seed_value - unable to calibrate CPU benchmarking loop.")
+        sys.exit(1)
     return seed_value
 
 #---------------------------------------------------------------------------------------
