@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export FIO=fio-2.19
+export FIO=fio-2.18
 
 sudo apt-get install build-essential
 sudo apt-get install zlib1g-dev
