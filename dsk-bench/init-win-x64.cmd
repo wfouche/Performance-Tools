@@ -1,1 +1,1 @@
-set FIO=%CD%\bin\win-x64\fio-2.6\fio.exe
+set FIO=%CD%\bin\win-x64\fio-2.18\fio.exe
