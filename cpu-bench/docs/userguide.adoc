@@ -1,0 +1,45 @@
+﻿= CPU-bench User Manual
+:sectnums:
+:toc: left
+:toclevels: 3
+:data-uri:
+:doctype: book
+
+== Overview
+
+=== AIX
+
+=== Linux
+
+=== MS Windows
+
+== Developing Benchmark Scripts
+
+[source,python]
+print "Hello from Python!"
+print 1+1
+
+== Notes
+
+Use pandoc to convert Word document to Asciidoc:
+
+[source,bat]
+----
+pandoc -f docx -t asciidoc -s RELEASE_NOTES.docx -o RELEASE_NOTES.adoc
+----
+
+[appendix]
+
+== PlantUML Diagram
+
+[plantuml, diagram-classes, png]     
+----
+class BlockProcessor
+class DiagramBlock
+class DitaaBlock
+class PlantUmlBlock
+
+BlockProcessor <|-- DiagramBlock
+DiagramBlock <|-- DitaaBlock
+DiagramBlock <|-- PlantUmlBlock
+----
