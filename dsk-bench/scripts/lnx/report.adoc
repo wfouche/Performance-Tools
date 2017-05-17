@@ -1,0 +1,1214 @@
+= FIO Benchmark Report
+:sectnums:
+:toc: left
+:toclevels: 3
+:data-uri:
+
+:toc!:
+
+== Report - Summary
+
+=== FIO Information
+
+time::
+  * Tue May 31 10:52:49 2016
+
+fio version::
+  * fio-2.6
+
+=== Global Options
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| filename
+| /tmp/fio.dat
+
+| ioengine
+| libaio
+
+|===
+
+=== Disk Utilization
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| in_queue
+| 957948
+
+| name
+| sda
+
+| read_ios
+| 0
+
+| read_merges
+| 0
+
+| read_ticks
+| 0
+
+| util
+| 99.9
+
+| write_ios
+| 56051
+
+| write_merges
+| 19
+
+| write_ticks
+| 957260
+
+|===
+
+== Report - Job(0) - seq_write_2k
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| ctx
+| 19315
+
+| elapsed
+| 61
+
+| error
+| 0
+
+| eta
+| 0
+
+| groupid
+| 0
+
+| jobname
+| seq_write_2k
+
+| latency_depth
+| 8
+
+| latency_percentile
+| 100.0
+
+| latency_target
+| 0
+
+| latency_window
+| 0
+
+| majf
+| 0
+
+| minf
+| 14
+
+| sys_cpu
+| 0.65
+
+| usr_cpu
+| 0.22
+
+|===
+
+=== job options
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| bs
+| 2k
+
+| direct
+| 1
+
+| iodepth
+| 8
+
+| nrfiles
+| 1
+
+| numjobs
+| 2
+
+| overwrite
+| 1
+
+| runtime
+| 60
+
+| rw
+| write
+
+| size
+| 1g
+
+| time_based
+| 1
+
+|===
+
+=== trim
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| bw
+| 0
+
+| bw_agg
+| 0.0
+
+| bw_dev
+| 0.0
+
+| bw_max
+| 0
+
+| bw_mean
+| 0.0
+
+| bw_min
+| 0
+
+| drop_ios
+| 0
+
+| io_bytes
+| 0
+
+| iops
+| 0.0
+
+| runtime
+| 0
+
+| short_ios
+| 0
+
+| total_ios
+| 0
+
+|===
+
+==== clat
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| max
+| 0
+
+| mean
+| 0.0
+
+| percentile
+|
+* 0.00: 0
+* 1.000000: 0
+* 10.000000: 0
+* 20.000000: 0
+* 30.000000: 0
+* 40.000000: 0
+* 5.000000: 0
+* 50.000000: 0
+* 60.000000: 0
+* 70.000000: 0
+* 80.000000: 0
+* 90.000000: 0
+* 95.000000: 0
+* 99.000000: 0
+* 99.500000: 0
+* 99.900000: 0
+* 99.950000: 0
+* 99.990000: 0
+
+| stddev
+| 0.0
+
+| min
+| 0
+
+|===
+
+==== lat
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| max
+| 0
+
+| mean
+| 0.0
+
+| stddev
+| 0.0
+
+| min
+| 0
+
+|===
+
+==== slat
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| max
+| 0
+
+| mean
+| 0.0
+
+| stddev
+| 0.0
+
+| min
+| 0
+
+|===
+
+=== latency_us
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| 2
+| 0.0
+
+| 4
+| 0.0
+
+| 10
+| 0.0
+
+| 20
+| 0.0
+
+| 50
+| 0.0
+
+| 100
+| 0.0
+
+| 250
+| 0.0
+
+| 500
+| 0.0
+
+| 750
+| 0.0
+
+| 1000
+| 0.0
+
+|===
+
+=== latency_ms
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| 2
+| 0.01
+
+| 4
+| 4.28
+
+| 10
+| 40.75
+
+| 20
+| 35.02
+
+| 50
+| 13.67
+
+| 100
+| 4.25
+
+| 250
+| 1.73
+
+| 500
+| 0.28
+
+| 750
+| 0.0
+
+| 1000
+| 0.0
+
+| 2000
+| 0.0
+
+| >=2000
+| 0.0
+
+|===
+
+=== read
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| bw
+| 0
+
+| bw_agg
+| 0.0
+
+| bw_dev
+| 0.0
+
+| bw_max
+| 0
+
+| bw_mean
+| 0.0
+
+| bw_min
+| 0
+
+| drop_ios
+| 0
+
+| io_bytes
+| 0
+
+| iops
+| 0.0
+
+| runtime
+| 0
+
+| short_ios
+| 0
+
+| total_ios
+| 0
+
+|===
+
+==== clat
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| max
+| 0
+
+| mean
+| 0.0
+
+| percentile
+|
+* 0.00: 0
+* 1.000000: 0
+* 10.000000: 0
+* 20.000000: 0
+* 30.000000: 0
+* 40.000000: 0
+* 5.000000: 0
+* 50.000000: 0
+* 60.000000: 0
+* 70.000000: 0
+* 80.000000: 0
+* 90.000000: 0
+* 95.000000: 0
+* 99.000000: 0
+* 99.500000: 0
+* 99.900000: 0
+* 99.950000: 0
+* 99.990000: 0
+
+| stddev
+| 0.0
+
+| min
+| 0
+
+|===
+
+==== lat
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| max
+| 0
+
+| mean
+| 0.0
+
+| stddev
+| 0.0
+
+| min
+| 0
+
+|===
+
+==== slat
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| max
+| 0
+
+| mean
+| 0.0
+
+| stddev
+| 0.0
+
+| min
+| 0
+
+|===
+
+=== write
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| bw
+| 878
+
+| bw_agg
+| 47.35
+
+| bw_dev
+| 291.1
+
+| bw_max
+| 1492
+
+| bw_mean
+| 883.17
+
+| bw_min
+| 143
+
+| drop_ios
+| 0
+
+| io_bytes
+| 52756
+
+| iops
+| 439.32
+
+| runtime
+| 60043
+
+| short_ios
+| 0
+
+| total_ios
+| 26378
+
+|===
+
+==== clat
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| max
+| 450594
+
+| mean
+| 18188.95
+
+| percentile
+|
+* 0.00: 0
+* 1.000000: 3728
+* 10.000000: 4192
+* 20.000000: 6432
+* 30.000000: 7968
+* 40.000000: 8768
+* 5.000000: 4016
+* 50.000000: 11456
+* 60.000000: 12864
+* 70.000000: 16064
+* 80.000000: 20096
+* 90.000000: 33024
+* 95.000000: 58624
+* 99.000000: 138240
+* 99.500000: 197632
+* 99.900000: 329728
+* 99.950000: 374784
+* 99.990000: 428032
+
+| stddev
+| 27610.76
+
+| min
+| 1688
+
+|===
+
+==== lat
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| max
+| 450610
+
+| mean
+| 18205.8
+
+| stddev
+| 27612.8
+
+| min
+| 1700
+
+|===
+
+==== slat
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| max
+| 29314
+
+| mean
+| 16.19
+
+| stddev
+| 320.83
+
+| min
+| 7
+
+|===
+
+=== iodepth_level
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| 1
+| 0.1
+
+| 2
+| 0.1
+
+| 4
+| 0.1
+
+| 8
+| 99.97
+
+| 16
+| 0.0
+
+| 32
+| 0.0
+
+| >=64
+| 0.0
+
+|===
+
+== Report - Job(1) - seq_write_2k
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| ctx
+| 22404
+
+| elapsed
+| 61
+
+| error
+| 0
+
+| eta
+| 0
+
+| groupid
+| 0
+
+| jobname
+| seq_write_2k
+
+| latency_depth
+| 8
+
+| latency_percentile
+| 100.0
+
+| latency_target
+| 0
+
+| latency_window
+| 0
+
+| majf
+| 0
+
+| minf
+| 10
+
+| sys_cpu
+| 0.71
+
+| usr_cpu
+| 0.25
+
+|===
+
+=== job options
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| bs
+| 2k
+
+| direct
+| 1
+
+| iodepth
+| 8
+
+| nrfiles
+| 1
+
+| numjobs
+| 2
+
+| overwrite
+| 1
+
+| runtime
+| 60
+
+| rw
+| write
+
+| size
+| 1g
+
+| time_based
+| 1
+
+|===
+
+=== trim
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| bw
+| 0
+
+| bw_agg
+| 0.0
+
+| bw_dev
+| 0.0
+
+| bw_max
+| 0
+
+| bw_mean
+| 0.0
+
+| bw_min
+| 0
+
+| drop_ios
+| 0
+
+| io_bytes
+| 0
+
+| iops
+| 0.0
+
+| runtime
+| 0
+
+| short_ios
+| 0
+
+| total_ios
+| 0
+
+|===
+
+==== clat
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| max
+| 0
+
+| mean
+| 0.0
+
+| percentile
+|
+* 0.00: 0
+* 1.000000: 0
+* 10.000000: 0
+* 20.000000: 0
+* 30.000000: 0
+* 40.000000: 0
+* 5.000000: 0
+* 50.000000: 0
+* 60.000000: 0
+* 70.000000: 0
+* 80.000000: 0
+* 90.000000: 0
+* 95.000000: 0
+* 99.000000: 0
+* 99.500000: 0
+* 99.900000: 0
+* 99.950000: 0
+* 99.990000: 0
+
+| stddev
+| 0.0
+
+| min
+| 0
+
+|===
+
+==== lat
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| max
+| 0
+
+| mean
+| 0.0
+
+| stddev
+| 0.0
+
+| min
+| 0
+
+|===
+
+==== slat
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| max
+| 0
+
+| mean
+| 0.0
+
+| stddev
+| 0.0
+
+| min
+| 0
+
+|===
+
+=== latency_us
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| 2
+| 0.0
+
+| 4
+| 0.0
+
+| 10
+| 0.0
+
+| 20
+| 0.0
+
+| 50
+| 0.0
+
+| 100
+| 0.0
+
+| 250
+| 0.0
+
+| 500
+| 0.0
+
+| 750
+| 0.0
+
+| 1000
+| 0.0
+
+|===
+
+=== latency_ms
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| 2
+| 0.02
+
+| 4
+| 3.19
+
+| 10
+| 33.35
+
+| 20
+| 39.42
+
+| 50
+| 21.02
+
+| 100
+| 2.72
+
+| 250
+| 0.28
+
+| 500
+| 0.01
+
+| 750
+| 0.0
+
+| 1000
+| 0.0
+
+| 2000
+| 0.0
+
+| >=2000
+| 0.0
+
+|===
+
+=== read
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| bw
+| 0
+
+| bw_agg
+| 0.0
+
+| bw_dev
+| 0.0
+
+| bw_max
+| 0
+
+| bw_mean
+| 0.0
+
+| bw_min
+| 0
+
+| drop_ios
+| 0
+
+| io_bytes
+| 0
+
+| iops
+| 0.0
+
+| runtime
+| 0
+
+| short_ios
+| 0
+
+| total_ios
+| 0
+
+|===
+
+==== clat
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| max
+| 0
+
+| mean
+| 0.0
+
+| percentile
+|
+* 0.00: 0
+* 1.000000: 0
+* 10.000000: 0
+* 20.000000: 0
+* 30.000000: 0
+* 40.000000: 0
+* 5.000000: 0
+* 50.000000: 0
+* 60.000000: 0
+* 70.000000: 0
+* 80.000000: 0
+* 90.000000: 0
+* 95.000000: 0
+* 99.000000: 0
+* 99.500000: 0
+* 99.900000: 0
+* 99.950000: 0
+* 99.990000: 0
+
+| stddev
+| 0.0
+
+| min
+| 0
+
+|===
+
+==== lat
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| max
+| 0
+
+| mean
+| 0.0
+
+| stddev
+| 0.0
+
+| min
+| 0
+
+|===
+
+==== slat
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| max
+| 0
+
+| mean
+| 0.0
+
+| stddev
+| 0.0
+
+| min
+| 0
+
+|===
+
+=== write
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| bw
+| 987
+
+| bw_agg
+| 53.13
+
+| bw_dev
+| 257.7
+
+| bw_max
+| 1968
+
+| bw_mean
+| 990.91
+
+| bw_min
+| 405
+
+| drop_ios
+| 0
+
+| io_bytes
+| 59280
+
+| iops
+| 493.88
+
+| runtime
+| 60015
+
+| short_ios
+| 0
+
+| total_ios
+| 29640
+
+|===
+
+==== clat
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| max
+| 251666
+
+| mean
+| 16178.28
+
+| percentile
+|
+* 0.00: 0
+* 1.000000: 3792
+* 10.000000: 4448
+* 20.000000: 7328
+* 30.000000: 8384
+* 40.000000: 11200
+* 5.000000: 4080
+* 50.000000: 12352
+* 60.000000: 15424
+* 70.000000: 17024
+* 80.000000: 21632
+* 90.000000: 29568
+* 95.000000: 40192
+* 99.000000: 71168
+* 99.500000: 85504
+* 99.900000: 162816
+* 99.950000: 183296
+* 99.990000: 224256
+
+| stddev
+| 14186.74
+
+| min
+| 1162
+
+|===
+
+==== lat
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| max
+| 251677
+
+| mean
+| 16195.69
+
+| stddev
+| 14193.35
+
+| min
+| 1176
+
+|===
+
+==== slat
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| max
+| 34003
+
+| mean
+| 16.94
+
+| stddev
+| 358.64
+
+| min
+| 7
+
+|===
+
+=== iodepth_level
+
+[cols="2,3a"]
+|===
+| Property | Value
+
+| 1
+| 0.1
+
+| 2
+| 0.1
+
+| 4
+| 0.1
+
+| 8
+| 99.98
+
+| 16
+| 0.0
+
+| 32
+| 0.0
+
+| >=64
+| 0.0
+
+|===

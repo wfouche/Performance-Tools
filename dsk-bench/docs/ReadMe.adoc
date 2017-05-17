@@ -1,0 +1,252 @@
+= Fio Disk Benchmarking Tool Read-Me
+:sectnums:
+:toc: left
+
+== About this Guide
+
+This guide describes the available Fio scripts as well as their usage.
+
+== Available Fio Scripts
+The Fio scripts can be found at ```fio/scripts```. these scripts are designed to mimic traditional database read and write patterns to the data and log files.
+
+=== random_write_8k_pages_10gb_file_size.fio
+* Models traditional database data file write patterns
+* Random 8K writes
+* Two threads perform reads concurrently
+* Duration of 60 seconds
+* File size read from is 10GB
+* IO Depth of 32 is set.
+
+=== random_read_8k_pages_10gb_file_size.fio
+* Models traditional database data file read patterns
+* Random 8K reads
+* Two threads perform reads concurrently
+* Duration of 60 seconds
+* File size read from is 10GB
+* IO Depth of 32 is set.
+
+=== random_readwrite_8k_pages_10gb_file_size.fio
+* Test to stress disks with concurrent reads and writes.
+* Random 8K reads and writes (concurrent)
+* Two threads perform reads concurrently
+* Duration of 60 seconds
+* File size read from is 10GB
+* IO Depth of 32 is set.
+
+=== sequential_write_2k_pages_1gb_file_size.fio
+* Models traditional database log file write patterns
+* Sequential 2K writes
+* Duration of 60 seconds
+* Two threads perform reads concurrently
+* IO depth of 8
+
+== Configuring Disk Benchmarks
+You are required to updated the above listed fio scripts with the location at which the disc benchmark should be run. Below is an example fio configuration. To set the location at which the disk benchmark will be run the ```[global]``` section must be updated. Depending on the OS either comment out the Linux or Windows file-name settings and input the location at which you require the benchmark run. 
+
+[source,ini]
+```
+[global]
+#for Linux environments we need to specify the directory and file name
+#directory=./
+#filename=fio.dat
+
+#For windows environments we need to escape the ":" character and specify path and file name in the filename parameter.
+filename=C\:\fio.dat
+
+[random_read_8k]
+numjobs=2
+nrfiles=1
+iodepth=32
+direct=1
+#invalidate=1
+blocksize=8k
+rw=randread
+size=10g
+time_based=1
+runtime=60
+overwrite=1
+```
+
+
+== Executing the Disk Benchmarks
+Windows command and Unix shell scripts are supplied to execute the disk benchmarks. Once the fio configuration files have been updated with the drive locations mentioned above, simply run the appropriate shell or Windows command script. Available scripts as follows.
+
+=== Windows
+* ```test_data_write.cmd```
+* ```test_data_read.cmd```
+* ```test_data_concurrent_read_and_write.cmd```
+* ```test_log_write.cmd```
+
+=== Linux
+* ```test_data_write.sh```
+* ```test_data_read.sh```
+* ```test_data_concurrent_read_and_write.sh```
+* ```test_log_write.sh```
+
+== Platform Support
+
+=== AIX
+
+Open source binary install packages for AIX in RPM format are available from:
+
+* http://www.bullfreeware.com/
+* http://www.perzl.org/aix/
+
+Information FIO for AIX can be found at:
+
+* http://www.perzl.org/aix/index.php?n=Main.Fio
+
+The RPM package of FIO for AIX can be downloaded from:
+
+* http://www.oss4aix.org/download/RPMS/fio/fio-2.1.12-1.aix5.3.ppc.rpm
+
+Install FIO via command (if fio is not currently installed):
+[source,bash]
+----
+$ wget http://www.oss4aix.org/download/RPMS/fio/fio-2.6-1.aix5.3.ppc.rpm
+$ sudo rpm -ivh --nodeps fio-2.6-1.aix5.3.ppc.rpm
+----
+
+Upgrade FIO via command (if a previous version of fio is already installed)
+[source,bash]
+----
+$ wget http://www.oss4aix.org/download/RPMS/fio/fio-2.6-1.aix5.3.ppc.rpm
+$ sudo rpm -Uvh --nodeps fio-2.6-1.aix5.3.ppc.rpm
+----
+
+=== Solaris 10 an 11
+
+Install fio on Solaris 10 and 11:
+
+[source,bash]
+----
+pkgadd -d http://get.opencsw.org/now
+/opt/csw/bin/pkgutil -U
+/opt/csw/bin/pkgutil -y -i fio 
+/usr/sbin/pkgchk -L CSWfio # list files
+----
+
+=== Redhat Linux
+
+RPM packages for Redhat can be found at:
+
+* http://rpmfind.net[http://rpmfind.net]
+
+
+==== Redhat 7
+
+[source,bash]
+----
+wget http://mirrors.liquidweb.com/fedora-epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+rpm -iv epel-release-7-5.noarch.rpm
+yum update
+yum install fio -y
+----
+
+=== Ubuntu Linux
+
+[source,bash]
+----
+$ sudo apt-get install fio
+----
+
+=== Windows
+
+* http://bluestop.org/fio/
+
+== FIO Binaries
+
+=== Windows - x64 - fio 2.6
+
+* bin\win-x64\fio-2.6-x64\fio.exe
+* init_win_x64.cmd
+
+== Source Code
+
+* https://github.com/axboe/fio
+* https://github.com/axboe/fio/commits/master
+* https://github.com/axboe/fio/releases - currently at v2.8 as of 22-MAR-2016
+
+== Creating Binaries
+
+=== Redhat Linux
+
+[source,bash]
+----
+sudo yum groupinstall "Development Tools"
+sudo yum install libaio
+sudo yum install libaio-devel
+----
+
+[source,bash]
+----
+wget https://github.com/axboe/fio/archive/fio-2.6.tar.gz
+tar xfvz fio-2.6.tar.gz
+cd fio-fio-2.6
+./configure
+make
+sudo make install
+cd ..
+rm -f -r fio-fio-2.6
+rm -f    fio-2.6.tar.gz
+----
+
+=== Ubuntu Linux
+
+[source,bash]
+----
+sudo apt-get install build-essential
+sudo apt-get install zlib1g-dev
+sudo apt-get install libaio1
+sudo apt-get install libaio-dev
+----
+
+[source,bash]
+----
+wget https://github.com/axboe/fio/archive/fio-2.6.tar.gz
+tar xfvz fio-2.6.tar.gz
+cd fio-fio-2.6
+./configure
+make
+sudo make install
+cd ..
+rm -f -r fio-fio-2.6
+rm -f    fio-2.6.tar.gz
+----
+
+=== AIX 
+
+[source,bash]
+----
+wget http://www.oss4aix.org/download/RPMS/fio/fio-2.6-1.aix5.3.ppc.rpm
+----
+
+== References
+
+=== SAS using FIO
+
+http://support.sas.com/resources/papers/proceedings13/479-2013.pdf
+
+=== Azure Linux VM and FIO
+
+http://www.edmondek.com/Test-Disk-Performance-on-an-Azure-Linux-VM/
+
+=== FIO disk benchmarking tutorial
+
+https://wiki.mikejung.biz/Benchmarking#Fio
+
+=== Ioping
+
+* https://wiki.mikejung.biz/Benchmarking#ioping_Installation_and_Commands
+* https://github.com/koct9i/ioping
+* https://github.com/koct9i/ioping/archive/master.zip
+
+=== fio2gnuplot
+
+http://tfindelkind.com/2015/09/16/fio-flexible-io-tester-part9-fio2gnuplot-to-visualize-the-output/
+
+
+=== genfio
+
+http://blogs.rdoproject.org/6110/adding-new-3rd-party-tools-in-fio
+

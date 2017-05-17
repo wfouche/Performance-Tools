@@ -1,0 +1,1 @@
+set FIO=%CD%\bin\win-x64\fio-2.6\fio.exe

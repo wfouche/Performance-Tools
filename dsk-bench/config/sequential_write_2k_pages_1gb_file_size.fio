@@ -1,0 +1,23 @@
+[global]
+
+#For Linux environments we need to specify the directory and file name
+#directory=./
+#filename=fio.dat
+
+#For windows environments we need to escape the ":" character and specify path and file name in the filename parameter.
+#filename=C\:\fio.dat
+filename=${FIO_FILENAME}
+
+[seq_write_2k]
+numjobs=2
+nrfiles=1
+iodepth=8
+direct=1
+#invalidate=1
+blocksize=2k
+rw=write
+size=1g
+time_based=1
+runtime=60
+overwrite=1
+
