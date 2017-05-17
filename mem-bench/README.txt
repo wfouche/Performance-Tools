@@ -1,0 +1,1 @@
+https://software.intel.com/en-us/articles/intelr-memory-latency-checker
