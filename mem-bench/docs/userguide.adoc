@@ -99,3 +99,9 @@ mlc -e::
      do not modify prefetcher settings
 
 There are more options for each of the commands above. Those are documented in the readme file in more detail and can be downloaded.
+
+== Download
+
+Both Linux and Windows versions of  Intel® MLC are included in the download:
+
+* https://software.intel.com/protected-download/494224/493768[Download]
