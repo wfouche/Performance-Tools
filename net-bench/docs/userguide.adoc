@@ -1,0 +1,58 @@
+= NET-bench
+:sectnums:
+:toc: left
+
+https://iperf.fr/
+
+== Introduction
+
+https://iperf.fr/[iPerf3] is a tool for active measurements of the maximum achievable bandwidth on IP networks. It supports tuning of various parameters related to timing, buffers and protocols (TCP, UDP, SCTP with IPv4 and IPv6). For each test it reports the bandwidth, loss, and other parameters. This is a new implementation that shares no code with the original iPerf and also is not backwards compatible.
+
+
+
+iPerf features:
+
+* TCP and SCTP
+
+** Measure bandwidth
+** Report MSS/MTU size and observed read sizes.
+** Support for TCP window size via socket buffers.
+
+* UDP
+
+** Client can create UDP streams of specified bandwidth.
+** Measure packet loss
+** Measure delay jitter
+** Multicast capable
+
+* Cross-platform: Windows, Linux, Android, MacOS X, FreeBSD, OpenBSD, NetBSD, VxWorks, Solaris.
+
+* Client and server can have multiple simultaneous connections (-P option).
+
+* Server handles multiple connections, rather than quitting after a single test.
+
+* Can run for specified time (-t option), rather than a set amount of data to transfer (-n or -k option).
+
+* Print periodic, intermediate bandwidth, jitter, and loss reports at specified intervals (-i option).
+
+* Run the server as a daemon (-D option)
+
+* Use representative streams to test out how link layer compression affects your achievable bandwidth (-F option).
+
+* A server accepts a single client simultaneously (iPerf3) multiple clients simultaneously (iPerf2)
+
+* New: Ignore TCP slowstart (-O option).
+
+* New: Set target bandwidth for UDP and (new) TCP (-b option).
+
+* New: Set IPv6 flow label (-L option)
+
+* New: Set congestion control algorithm (-C option)
+
+* New: Use SCTP rather than TCP (--sctp option)
+
+* New: Output in JSON format (-J option).
+
+* New: Disk read test (server: iperf3 -s / client: iperf3 -c testhost -i1 -F filename)
+
+* New: Disk write tests (server: iperf3 -s -F filename / client: iperf3 -c testhost i1)
