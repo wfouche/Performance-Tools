@@ -56,3 +56,53 @@ iPerf features:
 * New: Disk read test (server: iperf3 -s / client: iperf3 -c testhost -i1 -F filename)
 
 * New: Disk write tests (server: iperf3 -s -F filename / client: iperf3 -c testhost i1)
+
+== Installation
+
+=== Linux
+
+Install iperf3 from the provided RPM package:
+
+[source,bash]
+----
+$ cd bin/rhel7-amd64
+$ sudo rpm -ivh iperf3-3.1.3-1.fc24.x86_64.rpm
+----
+
+
+Validate that iperf3 is correctly installed:
+[source,bash]
+----
+$ iperf3 --version
+----
+
+
+=== Windows
+
+Install iperf3 from the provided .exe file:
+
+[source,bash]
+----
+C:\> md c:\Apps\bin
+C:\> copy net-bench\bin\win-x64\*.*  c:\Apps\bin
+----
+
+Validate that iperf3 is correctly installed:
+[source,bash]
+----
+C:\> c:\Apps\bin\iperf3 --version
+----
+
+== Measuring TCP Performance
+
+=== Server
+
+Run command:
+
+* iperf3 -s
+
+=== Client
+
+Run command:
+
+* iperf3 -c  <server host IP address>
