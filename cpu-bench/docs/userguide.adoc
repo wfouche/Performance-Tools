@@ -1,45 +1,258 @@
-﻿= CPU-bench User Manual
+= CPU-bench
 :sectnums:
 :toc: left
-:toclevels: 3
-:data-uri:
-:doctype: book
 
-== Overview
+== Introduction
 
-=== AIX
+*CPU-bench* measures the Degree of Parallism (https://en.wikipedia.org/wiki/Degree_of_parallelism[DOP]) of a computer system ranging from laptop / desktop size machines to large-scale non-uniform memory access (NUMA) server architectures. The notion of executing tasks simultaniously are realized in computer systems in three distinct ways:
+
+* Parallellism: 
+
+* Concurrency
+
+* Vectororization
+
+
+== Installation
 
 === Linux
 
-=== MS Windows
+Install iperf3 from the provided RPM package:
 
-== Developing Benchmark Scripts
-
-[source,python]
-print "Hello from Python!"
-print 1+1
-
-== Notes
-
-Use pandoc to convert Word document to Asciidoc:
-
-[source,bat]
+[source,bash]
 ----
-pandoc -f docx -t asciidoc -s RELEASE_NOTES.docx -o RELEASE_NOTES.adoc
+$ cd bin/rhel7-amd64
+$ sudo rpm -ivh iperf3-3.1.3-1.fc24.x86_64.rpm
 ----
 
-[appendix]
 
-== PlantUML Diagram
-
-[plantuml, diagram-classes, png]     
+Validate that iperf3 is correctly installed:
+[source,bash]
 ----
-class BlockProcessor
-class DiagramBlock
-class DitaaBlock
-class PlantUmlBlock
+$ iperf3 --version
+----
 
-BlockProcessor <|-- DiagramBlock
-DiagramBlock <|-- DitaaBlock
-DiagramBlock <|-- PlantUmlBlock
+
+=== Windows
+
+Install iperf3 from the provided .exe file:
+
+[source,bash]
+----
+C:\> md c:\Apps\bin
+C:\> copy net-bench\bin\win-x64\*.*  c:\Apps\bin
+----
+
+Validate that iperf3 is correctly installed:
+[source,bash]
+----
+C:\> c:\Apps\bin\iperf3 --version
+----
+
+== Measuring DOP - C extension enabled
+
+=== Windows
+
+[source]
+----
+C:\>  run-windows-1.cmd
+
+CPU-bench:
+
+    1.1.4 (2017-05-15 21:29:52.516000)
+
+    C_extension: enabled
+
+Hostname:
+
+    DESKTOP-2AH673B
+
+Operating System Environment:
+
+    Windows-10-10.0.14393-SP0
+
+Python Version:
+
+    3.5.3 (v3.5.3:1880cb95a742, Jan 16 2017, 16:02:32) [MSC v.1900 64 bit (AMD64)]
+
+Runtime Arguments:
+
+    C:\Python35\python.exe: ['cpu-bench.py', '--auto']
+
+Server Hardware:
+
+    Number of LCPUs (logical CPUs, hardware threads): 2
+
+Performance of 1 LCPU:
+
+    LCPU 0: It took 1.374 seconds to reach 4,294,967,296 at SPR(3126.9)
+    LCPU 0: It took 27.556 seconds to reach 93,808,052,687 at SPR(3404.2)
+    LCPU 0: It took 29.647 seconds to reach 102,127,027,590 at SPR(3444.7)
+    LCPU 0: It took 30.856 seconds to reach 103,342,486,803 at SPR(3349.2)
+
+Performance of 2 LCPUs:
+
+    LCPU 0: It took 30.886 seconds to reach 103,342,486,803 at SPR(3345.9)
+    LCPU 1: It took 30.570 seconds to reach 103,342,486,803 at SPR(3380.6)
+
+Benchmark Score:
+
+    NUM_LCPUs : 2
+    DOP       : 2.0
+    SPR       : 6726.5
+----
+
+=== Linux 
+
+[source]
+----
+[wfouche@dev-rhrl7 cpu-bench]$ ./run-linux-1.sh 
+
+CPU-bench:
+
+    1.1.4 (2017-05-15 21:29:52.516000)
+
+    C_extension: enabled
+
+Hostname:
+
+    dev-rhrl7.localdomain
+
+Operating System Environment:
+
+    Linux-3.10.0-514.16.1.el7.x86_64-x86_64-with-centos-7.3.1611-Core
+
+Python Version:
+
+    3.5.3 (default, Jan 17 2017, 14:34:36)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-11)]
+
+Runtime Arguments:
+
+    /usr/local/bin/python3: ['cpu-bench.py', '--auto']
+
+Server Hardware:
+
+    Number of LCPUs (logical CPUs, hardware threads): 2
+
+Performance of 1 LCPU:
+
+    LCPU 0: It took 1.328 seconds to reach 4,294,967,296 at SPR(3233.9)
+    LCPU 0: It took 28.316 seconds to reach 97,015,804,909 at SPR(3426.2)
+    LCPU 0: It took 30.227 seconds to reach 102,785,341,414 at SPR(3400.5)
+    LCPU 0: It took 29.596 seconds to reach 102,015,123,828 at SPR(3446.9)
+
+Performance of 2 LCPUs:
+
+    LCPU 0: It took 33.599 seconds to reach 102,015,123,828 at SPR(3036.3)
+    LCPU 1: It took 31.065 seconds to reach 102,015,123,828 at SPR(3283.9)
+
+Benchmark Score:
+
+    NUM_LCPUs : 2
+    DOP       : 1.8
+    SPR       : 6320.2
+----
+
+== Measuring DOP - C extension disabled
+
+=== Windows
+
+[source]
+----
+C:\>  run-windows-1.cmd
+
+CPU-bench:
+
+    1.1.4 (2017-05-15 21:29:52.516000)
+
+    C_extension: disabled
+
+Hostname:
+
+    DESKTOP-2AH673B
+
+Operating System Environment:
+
+    Windows-10-10.0.14393-SP0
+
+Python Version:
+
+    3.5.3 (v3.5.3:1880cb95a742, Jan 16 2017, 16:02:32) [MSC v.1900 64 bit (AMD64)]
+
+Runtime Arguments:
+
+    C:\Python35\python.exe: ['cpu-bench.py', '--auto']
+
+Server Hardware:
+
+    Number of LCPUs (logical CPUs, hardware threads): 2
+
+Performance of 1 LCPU:
+
+    LCPU 0: It took 1.116 seconds to reach 16,777,216 at SPR(15.0)
+    LCPU 0: It took 29.608 seconds to reach 450,978,728 at SPR(15.2)
+    LCPU 0: It took 29.950 seconds to reach 456,955,492 at SPR(15.3)
+    LCPU 0: It took 30.191 seconds to reach 457,719,892 at SPR(15.2)
+
+Performance of 2 LCPUs:
+
+    LCPU 0: It took 30.579 seconds to reach 457,719,892 at SPR(15.0)
+    LCPU 1: It took 30.676 seconds to reach 457,719,892 at SPR(14.9)
+
+Benchmark Score:
+
+    NUM_LCPUs : 2
+    DOP       : 2.0
+    SPR       : 29.9
+----
+
+=== Linux 
+
+[source]
+----
+[wfouche@dev-rhrl7 cpu-bench]$ ./run-linux-1.sh 
+
+CPU-bench:
+
+    1.1.4 (2017-05-15 21:29:52.516000)
+
+    C_extension: disabled
+
+Hostname:
+
+    dev-rhrl7.localdomain
+
+Operating System Environment:
+
+    Linux-3.10.0-514.16.1.el7.x86_64-x86_64-with-centos-7.3.1611-Core
+
+Python Version:
+
+    3.5.3 (default, Jan 17 2017, 14:34:36)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-11)]
+
+Runtime Arguments:
+
+    /usr/local/bin/python3: ['cpu-bench.py', '--auto']
+
+Server Hardware:
+
+    Number of LCPUs (logical CPUs, hardware threads): 2
+
+Performance of 1 LCPU:
+
+    LCPU 0: It took 1.872 seconds to reach 33,554,432 at SPR(17.9)
+    LCPU 0: It took 29.651 seconds to reach 537,672,790 at SPR(18.1)
+    LCPU 0: It took 29.962 seconds to reach 544,002,331 at SPR(18.2)
+    LCPU 0: It took 30.028 seconds to reach 544,692,096 at SPR(18.1)
+
+Performance of 2 LCPUs:
+
+    LCPU 0: It took 30.025 seconds to reach 544,692,096 at SPR(18.1)
+    LCPU 1: It took 29.829 seconds to reach 544,692,096 at SPR(18.3)
+
+Benchmark Score:
+
+    NUM_LCPUs : 2
+    DOP       : 2.0
+    SPR       : 36.4
 ----
