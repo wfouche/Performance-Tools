@@ -14,6 +14,8 @@
 #
 #---------------------------------------------------------------------------------------
 
+from __future__ import print_function, division
+
 # import datetime; print datetime.datetime.now()
 
 BUILD_VERSION   = "1.1.4"
@@ -177,29 +179,38 @@ def benchmark_one_CPU(seed_value, csv_report):
     for i in range(4):
        N = N_next
        duration_one_CPU = compute_N(N)
-       spr = N/duration_one_CPU
+       spr = N / duration_one_CPU
        spr = spr / 1000000.0
-       if not csv_report: print("    LCPU 0: It took %.3f seconds to reach %s at SPR(%.1f)"%(duration_one_CPU, format_n1k(N),spr))
+       if not csv_report:
+           print("    LCPU 0: It took %.3f seconds to reach %s at SPR(%.1f)"%(duration_one_CPU, format_n1k(N),spr))
        N_next = int((target_duration * N) / (duration_one_CPU))
        #N_next = (N_next//1000)*1000
 
     dop = 1.0
     
     # Compute SPR.
-    spr = int(dop*N/duration_one_CPU)
+    spr = int(dop * N / duration_one_CPU)
     spr = spr / 1000000.0
 
     #if not csv_report: print("")   
     #if not csv_report: print("    SPR: %.f"%(spr))
     #if not csv_report: print("    DOP: %.f"%(dop))
     
-    delta = abs(target_duration-duration_one_CPU)
+    delta = abs(target_duration - duration_one_CPU)
     if delta > 1.0:
         print("")
         print("System Error - system unstable with 1 LCPU - seed value could not be determined.")
         sys.exit(1)
        
     return (N, duration_one_CPU, dop, spr)
+
+#---------------------------------------------------------------------------------------
+
+def wait_till_ss(n):
+    # Wait till we reach hh:mm:30
+    while time.localtime().tm_sec != n:
+        # sleep for 100 milliseconds
+        time.sleep(100.0 / 1000.0)
 
 #---------------------------------------------------------------------------------------
 
@@ -210,10 +221,7 @@ def benchmark_all_CPUs(script_name, num_CPUs, N, duration_one_CPU, csv_report, d
     if not csv_report: print("Performance of %d LCPUs:"%(num_CPUs))
     if not csv_report: print("")
         
-    # Wait till we reach hh:mm:30
-    while time.localtime().tm_sec != 30:
-        # sleep for 100 milliseconds
-        time.sleep(100.0/1000.0)
+    wait_till_ss(30)
         
     timestamp = datetime.datetime.now().isoformat()
         
@@ -241,7 +249,7 @@ def benchmark_all_CPUs(script_name, num_CPUs, N, duration_one_CPU, csv_report, d
         list = out.splitlines()
         duration_this_CPU = list[0].decode()
         duration_this_CPU = float(duration_this_CPU)
-        spr = N/duration_this_CPU
+        spr = N / duration_this_CPU
         spr = spr / 1000000.0
         if not csv_report:
             rlist.append("    LCPU %d: It took %.3f seconds to reach %s at SPR(%.1f)"%(lcpu_id,duration_this_CPU,format_n1k(N),spr))
@@ -285,10 +293,8 @@ def child_process(N):
     """
     
     # All processes wait to start at exactly the same time.
-    # Wait till we reach hh:mm:00
-    while time.localtime().tm_sec != 0:
-        # sleep for 100 milliseconds
-        time.sleep(100.0/1000.0)
+    # Wait till we reach hh:mm:00        
+    wait_till_ss(0)        
     
     # Compute N and display the elapsed time to the console (pipe).
     print(compute_N(N))
