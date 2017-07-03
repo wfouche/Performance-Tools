@@ -40,6 +40,8 @@ import defaults
 
 use_c_extension = defaults.use_c_extension
 
+HOSTNAME = socket.gethostname()
+
 #---------------------------------------------------------------------------------------
 
 if platform.system() == "Windows":
@@ -216,14 +218,15 @@ def waitfor_time_ss(ss):
 
 def waitfor_time_hh_mm(hh, mm):
     t = time.localtime()
-    print("Current time: %d:%d:%d"%(t.tm_hour, t.tm_min, t.tm_sec))
+    #print("Current time: %d:%d:%d"%(t.tm_hour, t.tm_min, t.tm_sec))
     # Wait till we reach hh:mm:00
-    print("Waiting till: %d:%d:00"%(hh,mm))
+    #print("Waiting till: %d:%d:00"%(hh,mm))
     t = time.localtime()
     while not ((t.tm_hour == hh) and (t.tm_min == mm)):
         # sleep for 100 milliseconds
         time.sleep(100.0 / 1000.0)
         t = time.localtime()
+    #print("Done!!")        
 
 #---------------------------------------------------------------------------------------
 
@@ -233,11 +236,14 @@ def benchmark_all_CPUs(script_name, num_CPUs, N, duration_one_CPU, csv_report, d
 
     if not csv_report: print("Performance of %d LCPUs:"%(num_CPUs))
     if not csv_report: print("")
-        
-    waitfor_time_ss(30)
-        
+
+    current_tm_sec = time.localtime().tm_sec
+    if not (current_tm_sec in range(0,10)):
+        print("")
+        print("System Error - took too long to call benchmark_all_CPUs!")
+        sys.exit(1)
+    
     timestamp = datetime.datetime.now().isoformat()
-        
     duration_all_CPUs = 0.0
     L = []
     for i in range(num_CPUs):
@@ -246,10 +252,9 @@ def benchmark_all_CPUs(script_name, num_CPUs, N, duration_one_CPU, csv_report, d
         else:
             p = subprocess.Popen([sys.executable, script_name, "--mi=%d"%(N)], stdout=subprocess.PIPE)
         L.append(p)
-    
-    # Guard
+            
     current_tm_sec = time.localtime().tm_sec
-    if not (current_tm_sec in range(30,50)):
+    if not (current_tm_sec in range(0,20)):
         print("")
         print("System Error - took too long to start all background processes!")
         sys.exit(1)
@@ -292,8 +297,8 @@ def benchmark_all_CPUs(script_name, num_CPUs, N, duration_one_CPU, csv_report, d
         global csv_report_header
         if csv_report_header:
             csv_report_header = False
-            print("DATETIME,NUM_LCPUs,DOP,SPR")
-        print("%s,%d,%.1f,%.1f"%(timestamp[:19], num_CPUs, dop, spr))
+            print("HOSTNAME,DATETIME,NUM_LCPUs,DOP,SPR")
+        print("%s,%s,%d,%.1f,%.1f"%(HOSTNAME, timestamp[:19], num_CPUs, dop, spr))
         
     return (dop, spr)
 
@@ -307,7 +312,7 @@ def child_process(N):
     
     # All processes wait to start at exactly the same time.
     # Wait till we reach hh:mm:00        
-    waitfor_time_ss(0)        
+    waitfor_time_ss(30)        
     
     # Compute N and display the elapsed time to the console (pipe).
     print(compute_N(N))
@@ -361,13 +366,6 @@ def main_process(num_cpus, csv_report, N, duration_one_CPU, dop_one_CPU, spr_one
 
 if __name__ == "__main__":
     d = get_params(opt_list)
-	
-    if ("--waitfor_time" in d.keys()):
-        v = d["--waitfor_time"]
-        e = v.split(":")
-        hh = int(e[0])
-        mm = int(e[1])
-        waitfor_time_hh_mm(hh,mm)
 
     if ("--num_cpus" in d.keys()) or ("--auto" in d.keys()):
     
@@ -422,7 +420,7 @@ if __name__ == "__main__":
             print("")
             print("Hostname:")
             print("")
-            print("    %s"%(socket.gethostname()))
+            print("    %s"%(HOSTNAME))
             print("")
             print("Operating System Environment:")
             print("")            
@@ -454,6 +452,15 @@ if __name__ == "__main__":
         # Example return value: (541270585, 30.532)  
         (N, duration_one_CPU, dop_one_CPU, spr_one_CPU) = benchmark_one_CPU(seed_value, csv_report)
         gc.enable()
+        
+        if ("--waitfor_time" in d.keys()):
+            v = d["--waitfor_time"]
+            e = v.split(":")
+            hh = int(e[0])
+            mm = int(e[1])
+            waitfor_time_hh_mm(hh,mm)
+        else:
+            waitfor_time_ss(0)
         
         if sc == 0:
             (dop, spr) = main_process(num_cpus, csv_report, N, duration_one_CPU, dop_one_CPU, spr_one_CPU)        
@@ -489,8 +496,7 @@ if __name__ == "__main__":
                 print("")
                 #print("%s,%d,%.f,%.f"%(timestamp[:19], num_cpus, d_min, s_min))
                 #print("%s,%d,%.f,%.f"%(timestamp[:19], num_cpus, d_max, s_max))
-                print("%s,%d,%.1f,%.1f"%(timestamp[:19], num_cpus, d_avg, s_avg))
-                
+                print("%s,%d,%.1f,%.1f"%(timestamp[:19], num_cpus, d_avg, s_avg))               
 
         if not csv_report:                
             print("")
