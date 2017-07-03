@@ -18,8 +18,8 @@ from __future__ import print_function, division
 
 # import datetime; print datetime.datetime.now()
 
-BUILD_VERSION   = "1.1.4"
-BUILD_TIMESTAMP = "2017-05-15 21:29:52.516000"
+BUILD_VERSION   = "1.1.5"
+BUILD_TIMESTAMP = "2017-07-03 21:29:52.516000"
 
 #---------------------------------------------------------------------------------------
 
@@ -206,11 +206,24 @@ def benchmark_one_CPU(seed_value, csv_report):
 
 #---------------------------------------------------------------------------------------
 
-def wait_till_ss(n):
-    # Wait till we reach hh:mm:30
-    while time.localtime().tm_sec != n:
+def waitfor_time_ss(ss):
+    # Wait till we reach ??:??:ss
+    while time.localtime().tm_sec != ss:
         # sleep for 100 milliseconds
         time.sleep(100.0 / 1000.0)
+
+#---------------------------------------------------------------------------------------
+
+def waitfor_time_hh_mm(hh, mm):
+    t = time.localtime()
+    print("Current time: %d:%d:%d"%(t.tm_hour, t.tm_min, t.tm_sec))
+    # Wait till we reach hh:mm:00
+    print("Waiting till: %d:%d:00"%(hh,mm))
+    t = time.localtime()
+    while not ((t.tm_hour == hh) and (t.tm_min == mm)):
+        # sleep for 100 milliseconds
+        time.sleep(100.0 / 1000.0)
+        t = time.localtime()
 
 #---------------------------------------------------------------------------------------
 
@@ -221,7 +234,7 @@ def benchmark_all_CPUs(script_name, num_CPUs, N, duration_one_CPU, csv_report, d
     if not csv_report: print("Performance of %d LCPUs:"%(num_CPUs))
     if not csv_report: print("")
         
-    wait_till_ss(30)
+    waitfor_time_ss(30)
         
     timestamp = datetime.datetime.now().isoformat()
         
@@ -294,7 +307,7 @@ def child_process(N):
     
     # All processes wait to start at exactly the same time.
     # Wait till we reach hh:mm:00        
-    wait_till_ss(0)        
+    waitfor_time_ss(0)        
     
     # Compute N and display the elapsed time to the console (pipe).
     print(compute_N(N))
@@ -335,6 +348,7 @@ opt_list = \
     ("si",              "=="),
     ("sc",              "=="),
     ("csv_report",      None),
+    ("waitfor_time",    "=="),
 ]
 
 #---------------------------------------------------------------------------------------
@@ -347,6 +361,14 @@ def main_process(num_cpus, csv_report, N, duration_one_CPU, dop_one_CPU, spr_one
 
 if __name__ == "__main__":
     d = get_params(opt_list)
+	
+    if ("--waitfor_time" in d.keys()):
+        v = d["--waitfor_time"]
+        e = v.split(":")
+        hh = int(e[0])
+        mm = int(e[1])
+        waitfor_time_hh_mm(hh,mm)
+
     if ("--num_cpus" in d.keys()) or ("--auto" in d.keys()):
     
         if ("--num_cpus" in d.keys()):
