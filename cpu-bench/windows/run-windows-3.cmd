@@ -1,1 +1,1 @@
-C:\Python36\python.exe ..\src\cpu-bench.py --auto --csv_report  --si=00:30:00  --sc=48
+.\dist\cpu-bench\cpu-bench.exe --auto --csv_report  --si=00:30:00  --sc=48

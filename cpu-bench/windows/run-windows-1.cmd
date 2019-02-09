@@ -1,1 +1,1 @@
-C:\Python36\python.exe ..\src\cpu-bench.py --auto 
+.\dist\cpu-bench\cpu-bench.exe --auto 
