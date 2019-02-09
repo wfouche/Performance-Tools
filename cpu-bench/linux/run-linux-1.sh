@@ -1,5 +1,5 @@
 #!/bin/bash
 
-gcc -O ../compute_N.c -o compute_N
+gcc -O ../src/compute_N.c -o compute_N
 
-python ../cpu-bench.py  --auto
+python ../src/cpu-bench.py  --auto
