@@ -1,6 +1,5 @@
 #!/bin/bash
 
-rm compute_N
 cp ../../src/compute_N.c  .
 
 sudo docker run -t -i --rm \
