@@ -1,11 +1,5 @@
 = Backlog
 
-== Build a portable Linux binary for compute_N
-
-Build cross-distro Linux binaries:
-
-* https://phusion.github.io/holy-build-box/
-
 == CPU-Bench User Guide
 
 Update the user guide with instructions on how to run cpu-bench on Linux and Windows.
