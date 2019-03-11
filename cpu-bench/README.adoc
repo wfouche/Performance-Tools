@@ -45,9 +45,9 @@ C:\Git\Performance-Tools\cpu-bench> ./run-windows-1.sh
 
 The report below was generated on a Dell E6530 with 2 cores with hyper-threading endabled:
 
-* $ run-linux-1.cmd
-
 ----
+$ run-linux-1.sh
+
 CPU-bench:
 
     1.1.6 (2019-03-11 16:39:03.861382)
