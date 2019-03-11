@@ -43,65 +43,56 @@ C:\Git\Performance-Tools\cpu-bench> ./run-windows-1.sh
 
 == Sample Report
 
-The report below was generated on a Dell laptop with 4 cores. At best a DOP score equalling the number of Logical CPUs is expected.
+The report below was generated on a Dell E6530 with 2 cores with hyper-threading endabled:
 
-Windows - DOP results in the 
-Windows environment is 3.4 out of 8.0
-Linux - when booting the laptop from a live Linux distribution, and running the same benchmark from that environment the DOP score is 4.0 out of 8.0
-Windows output on Dell m2800 laptop running Windows 10:
-
-`c:\temp\Performance-Tools\cpu-bench\windows>` run-windows-1.cmd
+* $ run-linux-1.cmd
 
 ----
 CPU-bench:
 
-1.1.5 (2017-07-03 21:29:52.516000)
+    1.1.6 (2019-03-11 16:39:03.861382)
 
-C_extension: enabled
+    C_extension: enabled
 
 Hostname:
 
-CPTDL-2XDF062
+    wfouche-Latitude-E6530
 
 Operating System Environment:
 
-Windows-10-10.0.15063-SP0
+    Linux-4.18.0-16-generic-x86_64-with-LinuxMint-19.1-tessa
 
 Python Version:
 
-3.6.8 (tags/v3.6.8:3c6b436a57, Dec 24 2018, 00:16:47) [MSC v.1916 64 bit (AMD64)]
+    2.7.15rc1 (default, Nov 12 2018, 14:31:15)  [GCC 7.3.0]
 
 Runtime Arguments:
 
-C:\Users\wfouche\Downloads\Performance-Tools-master\cpu-bench\windows\dist\cpu-bench\cpu-bench.exe: ['.\\dist\\cpu-bench\\cpu-bench.exe', '--auto']
+    /usr/bin/python: ['../src/cpu-bench.py', '--auto']
 
 Server Hardware:
 
-Number of LCPUs (logical CPUs, hardware threads): 8
+    Number of LCPUs (logical CPUs, hardware threads): 4
 
 Performance of 1 LCPU:
 
-LCPU 0: It took 1.226 seconds to reach 4,294,967,296 at SPR(3502.1)
-LCPU 0: It took 30.057 seconds to reach 105,062,029,779 at SPR(3495.4)
-LCPU 0: It took 30.074 seconds to reach 104,861,541,502 at SPR(3486.8)
-LCPU 0: It took 30.162 seconds to reach 104,604,556,002 at SPR(3468.1)
+    LCPU 0: It took 1.224 seconds to reach 4,294,967,296 at SPR(3508.5)
+    LCPU 0: It took 29.557 seconds to reach 105,255,305,389 at SPR(3561.1)
+    LCPU 0: It took 29.922 seconds to reach 106,833,976,819 at SPR(3570.4)
+    LCPU 0: It took 29.980 seconds to reach 107,110,976,515 at SPR(3572.7)
 
-Performance of 8 LCPUs:
+Performance of 4 LCPUs:
 
-LCPU 0: It took 70.567 seconds to reach 104,604,556,002 at SPR(1482.3)
-LCPU 1: It took 70.452 seconds to reach 104,604,556,002 at SPR(1484.8)
-LCPU 2: It took 70.727 seconds to reach 104,604,556,002 at SPR(1479.0)
-LCPU 3: It took 70.514 seconds to reach 104,604,556,002 at SPR(1483.5)
-LCPU 4: It took 70.681 seconds to reach 104,604,556,002 at SPR(1480.0)
-LCPU 5: It took 70.580 seconds to reach 104,604,556,002 at SPR(1482.1)
-LCPU 6: It took 70.619 seconds to reach 104,604,556,002 at SPR(1481.3)
-LCPU 7: It took 70.404 seconds to reach 104,604,556,002 at SPR(1485.8)
+    LCPU 0: It took 61.603 seconds to reach 107,110,976,515 at SPR(1738.7)
+    LCPU 1: It took 63.326 seconds to reach 107,110,976,515 at SPR(1691.4)
+    LCPU 2: It took 63.323 seconds to reach 107,110,976,515 at SPR(1691.5)
+    LCPU 3: It took 61.516 seconds to reach 107,110,976,515 at SPR(1741.2)
 
 Benchmark Score:
 
-NUM_LCPUs :  8.0
-DOP :        3.4
-SPR :       1185
+    NUM_LCPUs : 4
+    DOP       : 1.9
+    SPR       : 6862.9
 ----
 
 == Platform Support

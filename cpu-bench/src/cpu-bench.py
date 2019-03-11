@@ -18,8 +18,8 @@ from __future__ import print_function, division
 
 # import datetime; print datetime.datetime.now()
 
-BUILD_VERSION   = "1.1.5"
-BUILD_TIMESTAMP = "2017-07-03 21:29:52.516000"
+BUILD_VERSION   = "1.1.6"
+BUILD_TIMESTAMP = "2019-03-11 16:39:03.861382"
 
 #---------------------------------------------------------------------------------------
 

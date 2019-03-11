@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo apt install docker docker.io
+
 # https://github.com/phusion/holy-build-box/blob/master/TUTORIAL-1-BASICS.md
 #
 # Type 'exit' to quit from the bash shell.
