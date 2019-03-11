@@ -1,8 +1,114 @@
-= CPU Benchmark
+= CPU-bench
+
+== Overview
+
+CPU-bench is a tool to be used to measure the degree of parallelism (DOP) of a physical computer or virtual machine (VM). The DOP is the number of instructions that can be executed in parallel. A server might report that it has N logical CPUs, but depending on whether Hyper-Threading is enabled or not, and how CPU management is configured in the virtualization software (if used), the server might not be able to executed N instructions at the same time. CPU-bench reports:
+
+The number of logical CPUs assigned to a server.
+The DOP of that server, given that:
+
+* DOP is less than or equal to Number-of-logical-CPUs
+
+If Hyper-threading is used, the DOP score is a lot less (typically 1/2) that the number of logical CPUs.
+
+== CPU-Bench User Guide
+
+Update the user guide with instructions on how to run cpu-bench on Linux and Windows.
+
+== Download
+
+CPU-bench is available from:
+
+* https://github.com/wfouche/Performance-Tools/archive/master.zip 
+Download the source code as a ZIP file, and unzip it on AIX, Linux, or Windows.
+
+=== AIX
+
+----
+cd aix
+./run_aix.sh
+----
+
+=== Linux
+
+----
+$ cd linux
+$ ./run-linux-1.sh
+----
+
+=== Windows
+
+----
+C:\Git\Performance-Tools\cpu-bench> cd windows
+C:\Git\Performance-Tools\cpu-bench> ./run-windows-1.sh
+----
+
+== Sample Report
+
+The report below was generated on a Dell laptop with 4 cores.
+
+Windows - DOP results in the 
+Windows environment is 3.4 out of 8.0
+Linux - when booting the laptop from a live Linux distribution, and running the same benchmark from that environment the DOP score is 4.0 out of 8.0
+Windows output on Dell m2800 laptop running Windows 10:
+
+`c:\temp\Performance-Tools\cpu-bench\windows>` run-windows-1.cmd
+
+----
+CPU-bench:
+
+1.1.5 (2017-07-03 21:29:52.516000)
+
+C_extension: enabled
+
+Hostname:
+
+CPTDL-2XDF062
+
+Operating System Environment:
+
+Windows-10-10.0.15063-SP0
+
+Python Version:
+
+3.6.8 (tags/v3.6.8:3c6b436a57, Dec 24 2018, 00:16:47) [MSC v.1916 64 bit (AMD64)]
+
+Runtime Arguments:
+
+C:\Users\wfouche\Downloads\Performance-Tools-master\cpu-bench\windows\dist\cpu-bench\cpu-bench.exe: ['.\\dist\\cpu-bench\\cpu-bench.exe', '--auto']
+
+Server Hardware:
+
+Number of LCPUs (logical CPUs, hardware threads): 8
+
+Performance of 1 LCPU:
+
+LCPU 0: It took 1.226 seconds to reach 4,294,967,296 at SPR(3502.1)
+LCPU 0: It took 30.057 seconds to reach 105,062,029,779 at SPR(3495.4)
+LCPU 0: It took 30.074 seconds to reach 104,861,541,502 at SPR(3486.8)
+LCPU 0: It took 30.162 seconds to reach 104,604,556,002 at SPR(3468.1)
+
+Performance of 8 LCPUs:
+
+LCPU 0: It took 70.567 seconds to reach 104,604,556,002 at SPR(1482.3)
+LCPU 1: It took 70.452 seconds to reach 104,604,556,002 at SPR(1484.8)
+LCPU 2: It took 70.727 seconds to reach 104,604,556,002 at SPR(1479.0)
+LCPU 3: It took 70.514 seconds to reach 104,604,556,002 at SPR(1483.5)
+LCPU 4: It took 70.681 seconds to reach 104,604,556,002 at SPR(1480.0)
+LCPU 5: It took 70.580 seconds to reach 104,604,556,002 at SPR(1482.1)
+LCPU 6: It took 70.619 seconds to reach 104,604,556,002 at SPR(1481.3)
+LCPU 7: It took 70.404 seconds to reach 104,604,556,002 at SPR(1485.8)
+
+Benchmark Score:
+
+NUM_LCPUs :  8.0
+DOP :        3.4
+SPR :       1185
+----
 
 == Platform Support
 
-*CPU-bench* can be run using either Python 2.7 or Python 3.5.
+CPU-bench can be run using either Python 2.7 or Python 3.x.
 
 === AIX 
 
