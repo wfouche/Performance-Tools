@@ -1,9 +1,5 @@
 = Backlog
 
-== CPU-Bench User Guide
-
-Update the user guide with instructions on how to run cpu-bench on Linux and Windows.
-
 == AppImage
 
 * https://appimage.org/
