@@ -43,7 +43,7 @@ C:\Git\Performance-Tools\cpu-bench> ./run-windows-1.sh
 
 == Sample Report
 
-The report below was generated on a Dell E6530 with 2 cores with hyper-threading endabled:
+The report below was generated on a Dell E6530 with 2 cores with hyper-threading enabled:
 
 ----
 $ ./run-linux-1.sh
