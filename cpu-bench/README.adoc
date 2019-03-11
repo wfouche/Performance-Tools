@@ -20,7 +20,8 @@ Update the user guide with instructions on how to run cpu-bench on Linux and Win
 CPU-bench is available from:
 
 * https://github.com/wfouche/Performance-Tools/archive/master.zip 
-Download the source code as a ZIP file, and unzip it on AIX, Linux, or Windows.
+
+Download the master.zip file, and unzip it on AIX, Linux, or Windows.
 
 === AIX
 
