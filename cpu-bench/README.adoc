@@ -6,7 +6,7 @@ CPU-bench is a tool that measures the degree of parallelism (DOP) of a physical 
 
 * The number of logical CPUs assigned to a server.
 
-* The DOP of that server, given that:
+* The DOP of that server.
 
 If Hyper-threading is enabled, the DOP score is a lot less than the number of logical CPUs.
 
@@ -43,7 +43,7 @@ C:\Git\Performance-Tools\cpu-bench> ./run-windows-1.sh
 
 == Sample Report
 
-The report below was generated on a Dell laptop with 4 cores.
+The report below was generated on a Dell laptop with 4 cores. At best a DOP score equalling the number of Logical CPUs is expected.
 
 Windows - DOP results in the 
 Windows environment is 3.4 out of 8.0
