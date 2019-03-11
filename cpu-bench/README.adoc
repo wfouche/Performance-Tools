@@ -26,8 +26,8 @@ Download the master.zip file, and unzip it on AIX, Linux, or Windows.
 === AIX
 
 ----
-cd aix
-./run_aix.sh
+$ cd aix
+$ ./run_aix.sh
 ----
 
 === Linux
