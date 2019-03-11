@@ -2,18 +2,13 @@
 
 == Overview
 
-CPU-bench is a tool to be used to measure the degree of parallelism (DOP) of a physical computer or virtual machine (VM). The DOP is the number of instructions that can be executed in parallel. A server might report that it has N logical CPUs, but depending on whether Hyper-Threading is enabled or not, and how CPU management is configured in the virtualization software (if used), the server might not be able to executed N instructions at the same time. CPU-bench reports:
+CPU-bench is a tool that measures the degree of parallelism (DOP) of a physical computer or virtual machine (VM). The DOP is the number of instructions that can be executed in parallel. A server might report that it has `N` logical CPUs, but depending on whether Hyper-Threading is enabled or not, and how CPU management is configured in the virtualization software (if used), the server might not be able to executed `N` instructions at the same time. CPU-bench reports:
 
-The number of logical CPUs assigned to a server.
-The DOP of that server, given that:
+* The number of logical CPUs assigned to a server.
 
-* DOP is less than or equal to Number-of-logical-CPUs
+* The DOP of that server, given that:
 
-If Hyper-threading is used, the DOP score is a lot less (typically 1/2) that the number of logical CPUs.
-
-== CPU-Bench User Guide
-
-Update the user guide with instructions on how to run cpu-bench on Linux and Windows.
+If Hyper-threading is enabled, the DOP score is a lot less than the number of logical CPUs.
 
 == Download
 
@@ -22,6 +17,8 @@ CPU-bench is available from:
 * https://github.com/wfouche/Performance-Tools/archive/master.zip 
 
 Download the master.zip file, and unzip it on AIX, Linux, or Windows.
+
+== Running
 
 === AIX
 
