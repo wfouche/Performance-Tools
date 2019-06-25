@@ -9,4 +9,4 @@ sudo docker run -t -i --rm \
   bash -x -c 'gcc -O -fvisibility=hidden -I/hbb_exe/include /io/compute_N.c -o /io/compute_N $LDFLAGS'
 
 rm compute_N.c
-mv compute_N ..
+mv -f compute_N ..
