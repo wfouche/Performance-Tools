@@ -38,7 +38,7 @@ $ ./run-linux-1.sh
 
 ----
 C:\Git\Performance-Tools\cpu-bench> cd windows
-C:\Git\Performance-Tools\cpu-bench> ./run-windows-1.sh
+C:\Git\Performance-Tools\cpu-bench> run-windows-1.sh
 ----
 
 == Sample Report
