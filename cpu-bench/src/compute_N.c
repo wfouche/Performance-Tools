@@ -38,7 +38,9 @@ int main(int argc, char* argv[])
         }
         else
         {
-           sleep(1);
+            // https://stackoverflow.com/questions/1157209/is-there-an-alternative-sleep-function-in-c-to-milliseconds
+			// sleep for 10 milliseconds
+            usleep(10*1000);
         }
     }
 
