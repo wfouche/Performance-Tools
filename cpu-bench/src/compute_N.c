@@ -73,7 +73,7 @@ int main(int argc, char* argv[]) {
         compute_N(waiting, n);
     } else {
         // Multiple threads
-        printf("multi-threading: not yet support.\n");
+        printf("compute_N.c: multi-threading - not yet support.\n");
         exit(1);
     }
 	

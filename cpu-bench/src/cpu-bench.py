@@ -230,7 +230,7 @@ def waitfor_time_hh_mm(hh, mm):
 
 #---------------------------------------------------------------------------------------
 
-def benchmark_all_CPUs(script_name, num_CPUs, N, duration_one_CPU, csv_report, dop_one_CPU, spr_one_CPU):
+def benchmark_all_CPUs(script_name, num_CPUs, N, duration_one_CPU, csv_report, dop_one_CPU, spr_one_CPU, multi_threaded=False):
     if not csv_report:
         print("")
 
@@ -246,12 +246,18 @@ def benchmark_all_CPUs(script_name, num_CPUs, N, duration_one_CPU, csv_report, d
     timestamp = datetime.datetime.now().isoformat()
     duration_all_CPUs = 0.0
     L = []
-    for i in range(num_CPUs):
-        if use_c_extension:
-            p = subprocess.Popen([exe_compute_N, "%d"%(N), "0"], stdout=subprocess.PIPE)
-        else:
-            p = subprocess.Popen([sys.executable, script_name, "--mi=%d"%(N)], stdout=subprocess.PIPE)
-        L.append(p)
+    if multi_threaded:
+        # Using multiple threads, one per logical CPU.
+        printf("cpu-bench.py: multi-threading - not yet supported.\n")
+        system.exit(1)
+    else:
+        # Using multiple processes, one per logical CPU.
+        for i in range(num_CPUs):
+            if use_c_extension:
+                p = subprocess.Popen([exe_compute_N, "%d"%(N), "0"], stdout=subprocess.PIPE)
+            else:
+                p = subprocess.Popen([sys.executable, script_name, "--mi=%d"%(N)], stdout=subprocess.PIPE)
+            L.append(p)
             
     current_tm_sec = time.localtime().tm_sec
     if not (current_tm_sec in range(0,20)):
