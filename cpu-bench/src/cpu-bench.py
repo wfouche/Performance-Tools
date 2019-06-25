@@ -1,8 +1,8 @@
-#---------------------------------------------------------------------------------------
+﻿#---------------------------------------------------------------------------------------
 #
 # Program to benchmark CPUs and determine a server's degree of parallelism (DOP).
 #
-# Author: W. Fouche
+# Author: W. Fouché
 #
 # Intel:
 #   Disable Intel SpeedStep
