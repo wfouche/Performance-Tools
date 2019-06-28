@@ -32,7 +32,9 @@ double compute_N(int waiting, long n) {
 
     gettimeofday(&start, NULL); 
     {
-        while (n) { 
+        while (n)
+        { 
+            n -= 1;
             //
             // Intel x64 (gcc -O -S) - machine code.
             //
@@ -40,7 +42,6 @@ double compute_N(int waiting, long n) {
             //       subq    $1, %rbx
             //       jne     .L9
             //
-            n -= 1;
 	}
     }
     gettimeofday(&end, NULL);
