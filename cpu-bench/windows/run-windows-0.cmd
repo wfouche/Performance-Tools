@@ -1,0 +1,1 @@
+.\dist\cpu-bench\cpu-bench.exe --auto --use_threads
