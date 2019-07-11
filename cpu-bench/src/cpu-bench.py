@@ -295,10 +295,11 @@ def benchmark_all_CPUs(script_name, num_CPUs, N, duration_one_CPU, csv_report, d
     if not csv_report:
         print("Benchmark Score:")
         print("")
-        print("    Timestamp : %s"%(("%s"%datetime.datetime.now()).split('.')[0]))
         print("    NUM_LCPUs : %d"%(num_CPUs))
         print("    DOP       : %.3f"%(dop))
         print("    SPR       : %.3f"%(spr))
+        print("")
+        print("    Timestamp : %s"%(("%s"%datetime.datetime.now()).split('.')[0]))
 
     if csv_report:
         global csv_report_header
