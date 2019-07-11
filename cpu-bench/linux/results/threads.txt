@@ -1,0 +1,47 @@
+CPU-bench:
+
+    1.1.6 (2019-03-11 16:39:03.861382)
+
+    C_extension: enabled
+
+Hostname:
+
+    wfouche-Latitude-E6530
+
+Operating System Environment:
+
+    Linux-4.18.0-25-generic-x86_64-with-neon-18.04-bionic
+
+Python Version:
+
+    2.7.15+ (default, Nov 27 2018, 23:36:35)  [GCC 7.3.0]
+
+Runtime Arguments:
+
+    /usr/bin/python: ['../src/cpu-bench.py', '--auto', '--use_threads']
+
+Server Hardware:
+
+    Number of LCPUs (logical CPUs, hardware threads): 4
+
+Performance of 1 LCPU:
+
+    LCPU 0: It took 1.492 seconds to reach 4,294,967,296 at SPR(2877.8)
+    LCPU 0: It took 29.897 seconds to reach 86,335,281,534 at SPR(2887.8)
+    LCPU 0: It took 30.013 seconds to reach 86,633,079,858 at SPR(2886.5)
+    LCPU 0: It took 29.992 seconds to reach 86,596,155,257 at SPR(2887.3)
+
+Performance of 4 LCPUs (using a thread per LCPU):
+
+    LCPU-0: It took 59.936 seconds to reach 86,596,155,257 at SPR(1444.8)
+    LCPU-1: It took 59.992 seconds to reach 86,596,155,257 at SPR(1443.5)
+    LCPU-2: It took 59.963 seconds to reach 86,596,155,257 at SPR(1444.2)
+    LCPU-3: It took 60.008 seconds to reach 86,596,155,257 at SPR(1443.1)
+
+Benchmark Score:
+
+    NUM_LCPUs : 4
+    DOP       : 2.000
+    SPR       : 5775.514
+
+    Timestamp : 2019-07-11 19:05:00
