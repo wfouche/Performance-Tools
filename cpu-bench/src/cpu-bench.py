@@ -236,9 +236,9 @@ def benchmark_all_CPUs(script_name, num_CPUs, N, duration_one_CPU, csv_report, d
 
     if not csv_report:
         if multi_threaded:
-            print("Performance of %d LCPUs (using a thread per LCPU:"%(num_CPUs))
+            print("Performance of %d LCPUs (using a thread per LCPU):"%(num_CPUs))
         else:
-            print("Performance of %d LCPUs (using a process per LCPU:"%(num_CPUs))
+            print("Performance of %d LCPUs (using a process per LCPU):"%(num_CPUs))
     if not csv_report: print("")
 
     current_tm_sec = time.localtime().tm_sec
