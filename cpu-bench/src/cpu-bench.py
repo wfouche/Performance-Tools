@@ -248,8 +248,11 @@ def benchmark_all_CPUs(script_name, num_CPUs, N, duration_one_CPU, csv_report, d
     L = []
     if multi_threaded:
         # Using multiple threads, one per logical CPU.
-        printf("cpu-bench.py: multi-threading - not yet supported.\n")
-        system.exit(1)
+        if use_c_extension:
+            p = subprocess.Popen([exe_compute_N, "%d"%(N), "%d"%(num_CPUs)], stdout=subprocess.PIPE)
+        else:       
+            printf("cpu-bench.py: multi-threading support is only enabled when the C_extension is activated.\n")
+            system.exit(1)
     else:
         # Using multiple processes, one per logical CPU.
         for i in range(num_CPUs):
@@ -268,18 +271,32 @@ def benchmark_all_CPUs(script_name, num_CPUs, N, duration_one_CPU, csv_report, d
     lcpu_id = 0
     SPR = 0.0
     rlist = []
-    for p in L:
+    if multi_threaded:
         out, err = p.communicate()
         list = out.splitlines()
-        duration_this_CPU = list[0].decode()
-        duration_this_CPU = float(duration_this_CPU)
-        spr = N / duration_this_CPU
-        spr = spr / 1000000.0
-        if not csv_report:
-            rlist.append("    LCPU %d: It took %.3f seconds to reach %s at SPR(%.1f)"%(lcpu_id,duration_this_CPU,format_n1k(N),spr))
-        duration_all_CPUs += duration_this_CPU
-        lcpu_id += 1
-        SPR += spr
+        for i in range(len(list)):
+            duration_this_CPU = list[i].decode()
+            duration_this_CPU = float(duration_this_CPU)
+            spr = N / duration_this_CPU
+            spr = spr / 1000000.0
+            if not csv_report:
+                rlist.append("    LCPU-%d: It took %.3f seconds to reach %s at SPR(%.1f)"%(lcpu_id,duration_this_CPU,format_n1k(N),spr))
+            duration_all_CPUs += duration_this_CPU
+            lcpu_id += 1
+            SPR += spr
+    else:
+        for p in L:
+            out, err = p.communicate()
+            list = out.splitlines()
+            duration_this_CPU = list[0].decode()
+            duration_this_CPU = float(duration_this_CPU)
+            spr = N / duration_this_CPU
+            spr = spr / 1000000.0
+            if not csv_report:
+                rlist.append("    LCPU %d: It took %.3f seconds to reach %s at SPR(%.1f)"%(lcpu_id,duration_this_CPU,format_n1k(N),spr))
+            duration_all_CPUs += duration_this_CPU
+            lcpu_id += 1
+            SPR += spr
         
     if not csv_report:
         for line in rlist:
@@ -370,7 +387,9 @@ def main_process(num_cpus, csv_report, N, duration_one_CPU, dop_one_CPU, spr_one
     # Now get all CPUs to count to 'N' and measure the elapsed time for individual CPUs.
     # Use this information to compute a CPU scaling index as well as a performance
     # rating for the server.
-    return benchmark_all_CPUs(sys.argv[0], num_cpus, N, duration_one_CPU, csv_report, dop_one_CPU, spr_one_CPU)
+    use_threads = True
+    
+    return benchmark_all_CPUs(sys.argv[0], num_cpus, N, duration_one_CPU, csv_report, dop_one_CPU, spr_one_CPU, use_threads)
 
 if __name__ == "__main__":
     d = get_params(opt_list)
