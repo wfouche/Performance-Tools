@@ -234,7 +234,11 @@ def benchmark_all_CPUs(script_name, num_CPUs, N, duration_one_CPU, csv_report, d
     if not csv_report:
         print("")
 
-    if not csv_report: print("Performance of %d LCPUs:"%(num_CPUs))
+    if not csv_report:
+        if multi_threaded:
+            print("Performance of %d LCPUs (using a thread per LCPU:"%(num_CPUs))
+        else:
+            print("Performance of %d LCPUs (using a process per LCPU:"%(num_CPUs))
     if not csv_report: print("")
 
     current_tm_sec = time.localtime().tm_sec
@@ -373,6 +377,7 @@ def get_params(opt_list, trace=0):
 opt_list = \
 [
     ("auto",            None),
+    ("use_threads",     None),
     ("num_cpus",        "=="),
     ("mi",              "=="),
     ("si",              "=="),
@@ -383,16 +388,20 @@ opt_list = \
 
 #---------------------------------------------------------------------------------------
 
-def main_process(num_cpus, csv_report, N, duration_one_CPU, dop_one_CPU, spr_one_CPU): 
+def main_process(num_cpus, csv_report, N, duration_one_CPU, dop_one_CPU, spr_one_CPU, use_threads): 
     # Now get all CPUs to count to 'N' and measure the elapsed time for individual CPUs.
     # Use this information to compute a CPU scaling index as well as a performance
     # rating for the server.
-    use_threads = True
     
     return benchmark_all_CPUs(sys.argv[0], num_cpus, N, duration_one_CPU, csv_report, dop_one_CPU, spr_one_CPU, use_threads)
 
 if __name__ == "__main__":
     d = get_params(opt_list)
+
+    if ("--use_threads" in d.keys()):
+        use_threads = True
+    else:
+        use_threads = False
 
     if ("--num_cpus" in d.keys()) or ("--auto" in d.keys()):
     
@@ -490,14 +499,14 @@ if __name__ == "__main__":
             waitfor_time_ss(0)
         
         if sc == 0:
-            (dop, spr) = main_process(num_cpus, csv_report, N, duration_one_CPU, dop_one_CPU, spr_one_CPU)        
+            (dop, spr) = main_process(num_cpus, csv_report, N, duration_one_CPU, dop_one_CPU, spr_one_CPU, use_threads)        
         else:
             dop_list = []
             spr_list = []
             time_start = time.time()
             time_delta_secs = si
             for i in range(sc):
-                (dop, spr) = main_process(num_cpus, csv_report, N, duration_one_CPU, dop_one_CPU, spr_one_CPU)
+                (dop, spr) = main_process(num_cpus, csv_report, N, duration_one_CPU, dop_one_CPU, spr_one_CPU, use_threads)
                 dop_list.append(dop)
                 spr_list.append(spr)
                 if i < sc-1:
