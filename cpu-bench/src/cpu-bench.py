@@ -23,6 +23,10 @@ BUILD_TIMESTAMP = "2019-03-11 16:39:03.861382"
 
 #---------------------------------------------------------------------------------------
 
+spr_scale_factor = 1.0
+
+#---------------------------------------------------------------------------------------
+
 import datetime
 import os
 import sys
@@ -182,7 +186,7 @@ def benchmark_one_CPU(seed_value, csv_report):
        N = N_next
        duration_one_CPU = compute_N(N)
        spr = N / duration_one_CPU
-       spr = spr / 1000000.0
+       spr = spr / 1000000000.0 * spr_scale_factor
        if not csv_report:
            print("    LCPU 0: It took %.3f seconds to reach %s at SPR(%.1f)"%(duration_one_CPU, format_n1k(N),spr))
        N_next = int((target_duration * N) / (duration_one_CPU))
@@ -192,7 +196,7 @@ def benchmark_one_CPU(seed_value, csv_report):
     
     # Compute SPR.
     spr = int(dop * N / duration_one_CPU)
-    spr = spr / 1000000.0
+    spr = spr / 1000000000.0 * spr_scale_factor
 
     #if not csv_report: print("")   
     #if not csv_report: print("    SPR: %.f"%(spr))
@@ -282,7 +286,7 @@ def benchmark_all_CPUs(script_name, num_CPUs, N, duration_one_CPU, csv_report, d
             duration_this_CPU = list[i].decode()
             duration_this_CPU = float(duration_this_CPU)
             spr = N / duration_this_CPU
-            spr = spr / 1000000.0
+            spr = spr / 1000000000.0 * spr_scale_factor
             if not csv_report:
                 rlist.append("    LCPU-%d: It took %.3f seconds to reach %s at SPR(%.1f)"%(lcpu_id,duration_this_CPU,format_n1k(N),spr))
             duration_all_CPUs += duration_this_CPU
@@ -295,7 +299,7 @@ def benchmark_all_CPUs(script_name, num_CPUs, N, duration_one_CPU, csv_report, d
             duration_this_CPU = list[0].decode()
             duration_this_CPU = float(duration_this_CPU)
             spr = N / duration_this_CPU
-            spr = spr / 1000000.0
+            spr = spr / 1000000000.0 * spr_scale_factor
             if not csv_report:
                 rlist.append("    LCPU %d: It took %.3f seconds to reach %s at SPR(%.1f)"%(lcpu_id,duration_this_CPU,format_n1k(N),spr))
             duration_all_CPUs += duration_this_CPU
@@ -378,6 +382,7 @@ opt_list = \
 [
     ("auto",            None),
     ("use_threads",     None),
+    ("spr_scale_factor","=="),
     ("num_cpus",        "=="),
     ("mi",              "=="),
     ("si",              "=="),
@@ -402,6 +407,9 @@ if __name__ == "__main__":
         use_threads = True
     else:
         use_threads = False
+
+    if ("--spr_scale_factor" in d.keys()):
+        spr_scale_factor = float(d["--spr_scale_factor"])
 
     if ("--num_cpus" in d.keys()) or ("--auto" in d.keys()):
     
@@ -547,4 +555,4 @@ if __name__ == "__main__":
 
     sys.exit(0)
 
-#---------------------------------------------------------------------------------------
+#-----------------------------------
