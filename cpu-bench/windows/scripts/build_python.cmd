@@ -9,6 +9,8 @@ rd/q/s dist
 
 %PY_INSTALLER% ..\src\cpu-bench.py
 
+rd /q/s ..\src\__pycache__
+
 rd/q/s build
 
 del cpu-bench.spec

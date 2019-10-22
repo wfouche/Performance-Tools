@@ -16,10 +16,10 @@
 
 from __future__ import print_function, division
 
-# import datetime; print datetime.datetime.now()
+# import datetime; print(datetime.datetime.now())
 
-BUILD_VERSION   = "1.1.6"
-BUILD_TIMESTAMP = "2019-03-11 16:39:03.861382"
+BUILD_VERSION   = "1.2.0"
+BUILD_TIMESTAMP = "2019-10-22 10:59:48.297734"
 
 #---------------------------------------------------------------------------------------
 
