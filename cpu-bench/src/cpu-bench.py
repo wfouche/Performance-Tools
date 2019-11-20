@@ -19,7 +19,7 @@ from __future__ import print_function, division
 # import datetime; print(datetime.datetime.now())
 
 BUILD_VERSION   = "1.2.1"
-BUILD_TIMESTAMP = "2019-10-31 10:59:48.297734"
+BUILD_TIMESTAMP = "2019-11-20 19:59:48.297734"
 
 #---------------------------------------------------------------------------------------
 
@@ -186,9 +186,9 @@ def benchmark_one_CPU(seed_value, csv_report):
        N = N_next
        duration_one_CPU = compute_N(N)
        spr = N / duration_one_CPU
-       spr = spr / 1000000000.0 * spr_scale_factor
+       spr = spr / 1000000.0 * spr_scale_factor
        if not csv_report:
-           print("    LCPU 0: It took %.3f seconds to reach %s at SPR(%.3f)"%(duration_one_CPU, format_n1k(N),spr))
+           print("    LCPU 0: It took %.3f seconds to reach %s at SPR(%.1f)"%(duration_one_CPU, format_n1k(N),spr))
        N_next = int((target_duration * N) / (duration_one_CPU))
        #N_next = (N_next//1000)*1000
 
@@ -199,7 +199,7 @@ def benchmark_one_CPU(seed_value, csv_report):
     spr = spr / 1000000000.0 * spr_scale_factor
 
     #if not csv_report: print("")   
-    #if not csv_report: print("    SPR: %.3f"%(spr))
+    #if not csv_report: print("    SPR: %.1f"%(spr))
     #if not csv_report: print("    DOP: %.f"%(dop))
     
     delta = abs(target_duration - duration_one_CPU)
@@ -286,9 +286,9 @@ def benchmark_all_CPUs(script_name, num_CPUs, N, duration_one_CPU, csv_report, d
             duration_this_CPU = list[i].decode()
             duration_this_CPU = float(duration_this_CPU)
             spr = N / duration_this_CPU
-            spr = spr / 1000000000.0 * spr_scale_factor
+            spr = spr / 1000000.0 * spr_scale_factor
             if not csv_report:
-                rlist.append("    LCPU-%d: It took %.3f seconds to reach %s at SPR(%.3f)"%(lcpu_id,duration_this_CPU,format_n1k(N),spr))
+                rlist.append("    LCPU-%d: It took %.3f seconds to reach %s at SPR(%.1f)"%(lcpu_id,duration_this_CPU,format_n1k(N),spr))
             duration_all_CPUs += duration_this_CPU
             lcpu_id += 1
             SPR += spr
@@ -299,9 +299,9 @@ def benchmark_all_CPUs(script_name, num_CPUs, N, duration_one_CPU, csv_report, d
             duration_this_CPU = list[0].decode()
             duration_this_CPU = float(duration_this_CPU)
             spr = N / duration_this_CPU
-            spr = spr / 1000000000.0 * spr_scale_factor
+            spr = spr / 1000000.0 * spr_scale_factor
             if not csv_report:
-                rlist.append("    LCPU %d: It took %.3f seconds to reach %s at SPR(%.3f)"%(lcpu_id,duration_this_CPU,format_n1k(N),spr))
+                rlist.append("    LCPU %d: It took %.3f seconds to reach %s at SPR(%.1f)"%(lcpu_id,duration_this_CPU,format_n1k(N),spr))
             duration_all_CPUs += duration_this_CPU
             lcpu_id += 1
             SPR += spr
@@ -322,7 +322,7 @@ def benchmark_all_CPUs(script_name, num_CPUs, N, duration_one_CPU, csv_report, d
         print("")
         print("    NUM_LCPUs : %d"%(num_CPUs))
         print("    DOP       : %.3f"%(dop))
-        print("    SPR       : %.3f"%(spr))
+        print("    SPR       : %.1f"%(spr))
         print("")
         print("    Timestamp : %s"%(("%s"%datetime.datetime.now()).split('.')[0]))
 
@@ -331,7 +331,7 @@ def benchmark_all_CPUs(script_name, num_CPUs, N, duration_one_CPU, csv_report, d
         if csv_report_header:
             csv_report_header = False
             print("HOSTNAME,DATETIME,NUM_LCPUs,DOP,SPR")
-        print("%s,%s,%d,%.3f,%.3f"%(HOSTNAME, timestamp[:19], num_CPUs, dop, spr))
+        print("%s,%s,%d,%.3f,%.1f"%(HOSTNAME, timestamp[:19], num_CPUs, dop, spr))
         
     return (dop, spr)
 
