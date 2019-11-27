@@ -37,6 +37,7 @@ import gc
 import getopt
 import platform
 import timeit
+import multiprocessing
 
 #---------------------------------------------------------------------------------------
 
@@ -417,40 +418,7 @@ if __name__ == "__main__":
             num_cpus = int(d["--num_cpus"])
 
         if ("--auto" in d.keys()):
-            if platform.system() == "Windows":
-                num_cpus = int(os.getenv("NUMBER_OF_PROCESSORS"))
-            elif platform.system() in ["Linux", "CYGWIN_NT-10.0"]:
-                num_cpus = -1
-                p = subprocess.Popen("lscpu", stdout=subprocess.PIPE)
-                out, err = p.communicate()
-                list = out.splitlines()
-                for e in list:
-                    t = e.decode().split(":")
-                    if t[0] == 'CPU(s)': num_cpus = int(t[1].strip())
-                if num_cpus == -1:
-                    print("Linux: could not determine number of Logical CPUs using the 'lscpu' command.")
-                    sys.exit(0)
-            elif platform.system() == "AIX":
-                num_cpus = -1
-                p = subprocess.Popen("lparstat", stdout=subprocess.PIPE)
-                out, err = p.communicate()
-                list = out.splitlines()
-                for e in list:
-                    e = e.decode().strip()
-                    if e.find(":") > -1:
-                        s = e.split(":")
-                        s = s[1].strip()
-                        s = s.split(" ")
-                        for v in s:
-                            v = v.split("=")
-                            if v[0] == 'lcpu':
-                                num_cpus = int(v[1])                
-                if num_cpus == -1:
-                    print("AIX: could not determine number of Logical CPUs using the 'lparstat' command.")
-                    sys.exit(0)
-            else:
-                print("--auto not supported on", platform.system())
-                sys.exit(0)
+            num_cpus = multiprocessing.cpu_count()
         
         csv_report = ("--csv_report" in d.keys())
 
